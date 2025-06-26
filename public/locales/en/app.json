@@ -29,8 +29,7 @@
     "usernameInvalid": "Username must contain only letters, numbers and underscore (_)",
     "registerError": "Error registering user",
     "walletError": "Error connecting wallet",
-    "checkRegistrationError": "Error checking if user is registered",
-    "loginFailed": "Login failed"
+    "checkRegistrationError": "Error checking if user is registered"
   },
   "success": {
     "registered": "Registration completed successfully!"

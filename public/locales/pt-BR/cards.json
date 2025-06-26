@@ -1,0 +1,36 @@
+{
+  "cards": {
+    "title": "Minhas Cartas",
+    "subtitle": "Gerencie sua coleção de cartas especiais e veja suas estatísticas",
+    "loading": "Carregando suas cartas...",
+    "backButton": "Voltar",
+    "stats": {
+      "total": "Total",
+      "legendary": "Lendárias",
+      "rare": "Raras",
+      "common": "Comuns"
+    },
+    "collection": {
+      "title": "Sua Coleção",
+      "count": "{{count}} carta",
+      "count_plural": "{{count}} cartas",
+      "cardNumber": "Carta #{{id}}"
+    },
+    "rarity": {
+      "comum": "Comum",
+      "rara": "Rara",
+      "lendaria": "Lendária"
+    },
+    "empty": {
+      "title": "Nenhuma carta encontrada",
+      "description": "Você ainda não possui cartas em sua coleção. Complete missões e faça apostas para ganhar cartas especiais!",
+      "dashboardButton": "Ir para Dashboard"
+    },
+    "modal": {
+      "closeButton": "Fechar"
+    },
+    "errors": {
+      "loadFailed": "Erro ao carregar suas cartas"
+    }
+  }
+} 

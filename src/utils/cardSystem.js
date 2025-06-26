@@ -10,18 +10,18 @@ class CardSystem {
   }
 
   // Obter cartas baseado no idioma
-  getCards(language = 'pt') {
+  getCards(language = 'en') {
     return language === 'en' ? cardEN : cardPT;
   }
 
   // Filtrar cartas por raridade
-  getCardsByRarity(rarity, language = 'pt') {
+  getCardsByRarity(rarity, language = 'en') {
     const cards = this.getCards(language);
     return cards.filter(card => card.rarity === rarity);
   }
 
   // Selecionar carta aleatória de uma raridade específica
-  getRandomCardByRarity(rarity, language = 'pt') {
+  getRandomCardByRarity(rarity, language = 'en') {
     const cards = this.getCardsByRarity(rarity, language);
     if (cards.length === 0) return null;
     
@@ -30,7 +30,7 @@ class CardSystem {
   }
 
   // Gerar pack de 3 cartas para novo usuário (1 lendária, 1 rara, 1 comum)
-  generateNewUserPack(language = 'pt') {
+  generateNewUserPack(language = 'en') {
     const pack = [];
     
     // 1 carta lendária aleatória
@@ -124,7 +124,7 @@ class CardSystem {
   }
 
   // Processar novo usuário - gerar e salvar cartas
-  processNewUser(walletAddress, language = 'pt') {
+  processNewUser(walletAddress, language = 'en') {
     try {
       // Verifica se já recebeu cartas
       if (this.hasReceivedWelcomeCards(walletAddress)) {
@@ -150,7 +150,7 @@ class CardSystem {
   }
 
   // NOVA FUNÇÃO: Garante que o usuário sempre tenha cartas
-  ensureUserHasCards(walletAddress, language = 'pt') {
+  ensureUserHasCards(walletAddress, language = 'en') {
     try {
       // Verifica se o usuário tem cartas no cache local
       const existingCards = this.getUserCards(walletAddress);

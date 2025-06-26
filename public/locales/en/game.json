@@ -20,5 +20,42 @@
     "inProgress": "In Progress",
     "completed": "Completed",
     "locked": "Locked"
+  },
+  "betting": {
+    "loadingBets": "Loading bets...",
+    "backButton": "Back",
+    "makeBets": "Place your bets on the game",
+    "noMarketsAvailable": "No betting markets available",
+    "noMarketsDescription": "Betting markets for this game have not been set up yet. Come back soon to see betting options.",
+    "betSlip": "Bet Slip",
+    "minimizeCoupon": "Minimize coupon",
+    "expandCoupon": "Expand bet slip",
+    "activeBets": "Active Bets",
+    "clearBets": "Clear Bets",
+    "clearAllBets": "Clear all bets",
+    "totalOdds": "Total Odds",
+    "possibleReturn": "Possible Return",
+    "betAmount": "Bet Amount ($CHIPS)",
+    "placeBet": "Place Bet",
+    "placeBetWithAmount": "Bet {{amount}} $CHIPS",
+    "dragToPosition": "← Drag to position →",
+    "cards": {
+      "useSpecialCards": "Use Special Cards",
+      "manageCards": "Manage Cards ({{count}})",
+      "effect": "Effect: {{cardName}}",
+      "multipleEffects": "{{count}} Active Effects"
+    },
+         "errors": {
+       "selectAtLeastOne": "Select at least one odd to bet",
+       "enterValidAmount": "Enter a valid bet amount",
+       "matchIdError": "Error: Match ID not found. Try refreshing the page.",
+       "betError": "Error placing bet"
+     },
+    "success": {
+      "betPlaced": "Bet placed successfully!",
+      "cardAdded": "Card \"{{cardName}}\" added to bet!",
+      "cardRemoved": "Card \"{{cardName}}\" removed from bet!",
+      "allCardsRemoved": "All cards removed from bet"
+    }
   }
 } 

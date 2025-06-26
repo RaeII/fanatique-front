@@ -1,0 +1,71 @@
+{
+  "myBets": {
+    "title": "Minhas Apostas",
+    "subtitle": "Acompanhe todas as suas apostas e resultados",
+    "loading": "Carregando suas apostas...",
+    "backButton": "Voltar",
+    "refreshButton": "Atualizar",
+    "refreshSuccess": "Apostas atualizadas!",
+    "stats": {
+      "total": "Total",
+      "pending": "Pendentes", 
+      "won": "Ganhas",
+      "lost": "Perdidas",
+      "totalStaked": "CHIPS Apostados",
+      "totalWon": "CHIPS Ganhos"
+    },
+    "filters": {
+      "title": "Filtros",
+      "status": "Status",
+      "type": "Tipo",
+      "all": "Todos",
+      "pending": "Pendentes",
+      "won": "Ganhas", 
+      "lost": "Perdidas",
+      "single": "Simples",
+      "multiple": "Múltipla"
+    },
+    "betTypes": {
+      "single": "Aposta Simples",
+      "multiple": "Aposta Múltipla"
+    },
+    "betDetails": {
+      "title": "Detalhes da Aposta:",
+      "selection": "Seleção {{number}}",
+      "description": "Aposta esportiva",
+      "totalOdds": "Odd Total da Múltipla:",
+      "selections": "{{count}} seleção(ões)"
+    },
+    "cards": {
+      "title": "Cartas Utilizadas:",
+      "count": "{{count}} carta",
+      "count_plural": "{{count}} cartas"
+    },
+    "match": {
+      "loadingInfo": "Carregando informações da partida...",
+      "viewOdds": "Ver Odds",
+      "matchId": "Partida ID: {{id}}"
+    },
+    "labels": {
+      "amount": "Valor",
+      "odds": "Odd", 
+      "return": "Retorno",
+      "date": "Data",
+      "time": "às"
+    },
+    "empty": {
+      "noBets": "Nenhuma aposta encontrada",
+      "noFilteredBets": "Nenhuma aposta corresponde aos filtros",
+      "noBetsDescription": "Você ainda não fez nenhuma aposta. Que tal começar agora?",
+      "noFilteredDescription": "Tente ajustar os filtros para ver mais resultados.",
+      "firstBetButton": "Fazer Primeira Aposta"
+    },
+    "errors": {
+      "loadFailed": "Erro ao carregar suas apostas",
+      "loadDataFailed": "Falha ao carregar dados das apostas",
+      "loadCardsFailed": "Erro ao carregar cartas das apostas",
+      "loadMatchesFailed": "Erro ao carregar dados das partidas",
+      "loadMatchFailed": "Erro ao carregar dados da partida {{id}}"
+    }
+  }
+} 

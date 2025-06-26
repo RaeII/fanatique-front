@@ -1,0 +1,36 @@
+{
+  "cards": {
+    "title": "My Cards",
+    "subtitle": "Manage your special card collection and view your statistics",
+    "loading": "Loading your cards...",
+    "backButton": "Back",
+    "stats": {
+      "total": "Total",
+      "legendary": "Legendary",
+      "rare": "Rare",
+      "common": "Common"
+    },
+    "collection": {
+      "title": "Your Collection",
+      "count": "{{count}} card",
+      "count_plural": "{{count}} cards",
+      "cardNumber": "Card #{{id}}"
+    },
+    "rarity": {
+      "comum": "Common",
+      "rara": "Rare",
+      "lendaria": "Legendary"
+    },
+    "empty": {
+      "title": "No cards found",
+      "description": "You don't have any cards in your collection yet. Complete missions and place bets to earn special cards!",
+      "dashboardButton": "Go to Dashboard"
+    },
+    "modal": {
+      "closeButton": "Close"
+    },
+    "errors": {
+      "loadFailed": "Error loading your cards"
+    }
+  }
+} 

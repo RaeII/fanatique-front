@@ -2,19 +2,23 @@
   "matches": {
     "title": "{{clubName}} Matches",
     "loading": "Loading matches...",
+    "liveMatch": "Current Match",
+    "currentMatch": "Heart Club Match",
     "tabs": {
       "upcoming": "Upcoming",
       "past": "Past"
     },
     "noUpcoming": "No upcoming matches found",
     "noPast": "No past matches found",
+    "noMatches": "No matches found",
     "noHeartClub": {
       "title": "No Heart Club Selected",
       "description": "You need to select a heart club to view matches.",
       "goToDashboard": "Go to Dashboard"
     },
     "errors": {
-      "failedToLoad": "Failed to load matches"
+      "failedToLoad": "Failed to load matches",
+      "heartClubMatchError": "Error checking heart club match"
     }
   },
   "matchCard": {

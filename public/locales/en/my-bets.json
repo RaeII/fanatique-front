@@ -1,0 +1,71 @@
+{
+  "myBets": {
+    "title": "My Bets",
+    "subtitle": "Track all your bets and results",
+    "loading": "Loading your bets...",
+    "backButton": "Back",
+    "refreshButton": "Refresh",
+    "refreshSuccess": "Bets updated!",
+    "stats": {
+      "total": "Total",
+      "pending": "Pending", 
+      "won": "Won",
+      "lost": "Lost",
+      "totalStaked": "CHIPS Staked",
+      "totalWon": "CHIPS Won"
+    },
+    "filters": {
+      "title": "Filters",
+      "status": "Status",
+      "type": "Type",
+      "all": "All",
+      "pending": "Pending",
+      "won": "Won", 
+      "lost": "Lost",
+      "single": "Single",
+      "multiple": "Multiple"
+    },
+    "betTypes": {
+      "single": "Single Bet",
+      "multiple": "Multiple Bet"
+    },
+    "betDetails": {
+      "title": "Bet Details:",
+      "selection": "Selection {{number}}",
+      "description": "Sports bet",
+      "totalOdds": "Multiple Total Odds:",
+      "selections": "{{count}} selection(s)"
+    },
+    "cards": {
+      "title": "Cards Used:",
+      "count": "{{count}} card",
+      "count_plural": "{{count}} cards"
+    },
+    "match": {
+      "loadingInfo": "Loading match information...",
+      "viewOdds": "View Odds",
+      "matchId": "Match ID: {{id}}"
+    },
+    "labels": {
+      "amount": "Amount",
+      "odds": "Odds", 
+      "return": "Return",
+      "date": "Date",
+      "time": "at"
+    },
+    "empty": {
+      "noBets": "No bets found",
+      "noFilteredBets": "No bets match the filters",
+      "noBetsDescription": "You haven't placed any bets yet. How about starting now?",
+      "noFilteredDescription": "Try adjusting the filters to see more results.",
+      "firstBetButton": "Place First Bet"
+    },
+    "errors": {
+      "loadFailed": "Error loading your bets",
+      "loadDataFailed": "Failed to load bet data",
+      "loadCardsFailed": "Error loading bet cards",
+      "loadMatchesFailed": "Error loading match data",
+      "loadMatchFailed": "Error loading match {{id}} data"
+    }
+  }
+} 

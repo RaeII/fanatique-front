@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useWalletContext } from '../hooks/useWalletContext';
 import { 
   ArrowLeft, 
@@ -16,6 +17,7 @@ import { showError } from '../lib/toast';
 import cardSystem from '../utils/cardSystem';
 export default function CardsPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation('cards');
   const { isAuthenticated, isInitialized, account } = useWalletContext();
   const [loading, setLoading] = useState(true);
   const [userCards, setUserCards] = useState([]);
@@ -50,7 +52,7 @@ export default function CardsPage() {
 
       } catch (error) {
         console.error('Erro ao carregar cartas:', error);
-        showError('Erro ao carregar suas cartas');
+        showError(t('cards.errors.loadFailed'));
       } finally {
         setLoading(false);
       }
@@ -81,11 +83,11 @@ export default function CardsPage() {
   const getRarityText = (rarity) => {
     switch (rarity) {
       case 'comum':
-        return 'Comum';
+        return t('cards.rarity.comum');
       case 'rara':
-        return 'Rara';
+        return t('cards.rarity.rara');
       case 'lendaria':
-        return 'Lendária';
+        return t('cards.rarity.lendaria');
       default:
         return rarity;
     }
@@ -96,7 +98,7 @@ export default function CardsPage() {
       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-background">
         <div className="flex flex-col items-center">
           <Loader2 className="h-12 w-12 animate-spin text-secondary" />
-          <p className="mt-4 text-text-adaptive/70 dark:text-white/70">Carregando suas cartas...</p>
+          <p className="mt-4 text-text-adaptive/70 dark:text-white/70">{t('cards.loading')}</p>
         </div>
       </div>
     );
@@ -113,7 +115,7 @@ export default function CardsPage() {
             className="flex items-center text-white/80 hover:text-white mb-6"
           >
             <ArrowLeft size={18} className="mr-1" />
-            <span>Voltar</span>
+            <span>{t('cards.backButton')}</span>
           </button>
 
           {/* Page Header */}
@@ -124,9 +126,9 @@ export default function CardsPage() {
               </div>
             </div>
             <div>
-              <h1 className="text-3xl font-bold mb-2">Minhas Cartas</h1>
+              <h1 className="text-3xl font-bold mb-2">{t('cards.title')}</h1>
               <p className="text-white/80 max-w-2xl mx-auto">
-                Gerencie sua coleção de cartas especiais e veja suas estatísticas
+                {t('cards.subtitle')}
               </p>
             </div>
           </div>
@@ -140,7 +142,7 @@ export default function CardsPage() {
             <div className="bg-background-overlay rounded-2xl p-4 border border-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/60 text-sm">Total</p>
+                  <p className="text-white/60 text-sm">{t('cards.stats.total')}</p>
                   <p className="text-2xl font-bold text-white">{cardStats.total}</p>
                 </div>
                 <Package className="text-white/40" size={24} />
@@ -150,7 +152,7 @@ export default function CardsPage() {
             <div className="bg-background-overlay rounded-2xl p-4 border border-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/60 text-sm">Lendárias</p>
+                  <p className="text-white/60 text-sm">{t('cards.stats.legendary')}</p>
                   <p className="text-2xl font-bold text-yellow-400">{cardStats.lendaria}</p>
                 </div>
                 <Trophy className="text-yellow-400" size={24} />
@@ -160,7 +162,7 @@ export default function CardsPage() {
             <div className="bg-background-overlay rounded-2xl p-4 border border-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/60 text-sm">Raras</p>
+                  <p className="text-white/60 text-sm">{t('cards.stats.rare')}</p>
                   <p className="text-2xl font-bold text-blue-400">{cardStats.rara}</p>
                 </div>
                 <Star className="text-blue-400" size={24} />
@@ -170,7 +172,7 @@ export default function CardsPage() {
             <div className="bg-background-overlay rounded-2xl p-4 border border-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/60 text-sm">Comuns</p>
+                  <p className="text-white/60 text-sm">{t('cards.stats.common')}</p>
                   <p className="text-2xl font-bold text-gray-400">{cardStats.comum}</p>
                 </div>
                 <Circle className="text-gray-400" size={24} />
@@ -185,9 +187,12 @@ export default function CardsPage() {
         {userCards.length > 0 ? (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-white">Sua Coleção</h2>
+              <h2 className="text-xl font-bold text-white">{t('cards.collection.title')}</h2>
               <div className="text-sm text-white/60">
-                {userCards.length} carta{userCards.length !== 1 ? 's' : ''}
+                {userCards.length !== 1 
+                  ? t('cards.collection.count_plural', { count: userCards.length })
+                  : t('cards.collection.count', { count: userCards.length })
+                }
               </div>
             </div>
             
@@ -253,16 +258,16 @@ export default function CardsPage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-full animate-pulse"></div>
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">
-                Nenhuma carta encontrada
+                {t('cards.empty.title')}
               </h3>
               <p className="text-white/60 max-w-md mx-auto mb-6 leading-relaxed">
-                Você ainda não possui cartas em sua coleção. Complete missões e faça apostas para ganhar cartas especiais!
+                {t('cards.empty.description')}
               </p>
               <Button
                 onClick={() => navigate('/dashboard')}
                 className="bg-gradient-to-r from-secondary to-primary hover:from-secondary/90 hover:to-primary/90 text-black font-semibold rounded-xl px-6 py-3 transition-all shadow-lg hover:shadow-xl"
               >
-                Ir para Dashboard
+                {t('cards.empty.dashboardButton')}
               </Button>
             </div>
           </div>
@@ -321,7 +326,7 @@ export default function CardsPage() {
                 </p>
                 <div className="pt-4 border-t border-white/10">
                   <div className="flex items-center justify-center gap-2">
-                    <span className="text-sm text-white/60">Carta #{selectedCard.id}</span>
+                    <span className="text-sm text-white/60">{t('cards.collection.cardNumber', { id: selectedCard.id })}</span>
                     <span className="text-white/40">•</span>
                     <span className={`text-sm font-medium ${
                       selectedCard.rarity === 'lendaria' ? 'text-yellow-400' :
@@ -341,7 +346,7 @@ export default function CardsPage() {
                 onClick={() => setSelectedCard(null)}
                 className="w-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-medium rounded-xl py-3 transition-all"
               >
-                Fechar
+                {t('cards.modal.closeButton')}
               </Button>
             </div>
           </div>

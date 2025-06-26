@@ -20,5 +20,42 @@
     "inProgress": "Em Andamento",
     "completed": "Concluída",
     "locked": "Bloqueada"
+  },
+  "betting": {
+    "loadingBets": "Carregando apostas...",
+    "backButton": "Voltar",
+    "makeBets": "Faça suas apostas no jogo",
+    "noMarketsAvailable": "Nenhum mercado de apostas disponível",
+    "noMarketsDescription": "Os mercados de apostas para este jogo ainda não foram configurados. Volte em breve para ver as opções de apostas.",
+    "betSlip": "Cupom de Apostas",
+    "minimizeCoupon": "Minimizar cupom",
+    "expandCoupon": "Expandir cupom de apostas",
+    "activeBets": "Apostas Ativas",
+    "clearBets": "Limpar Apostas",
+    "clearAllBets": "Limpar todas as apostas",
+    "totalOdds": "Odd Total",
+    "possibleReturn": "Retorno Possível",
+    "betAmount": "Valor da Aposta ($CHIPS)",
+    "placeBet": "Apostar",
+    "placeBetWithAmount": "Apostar {{amount}} $CHIPS",
+    "dragToPosition": "← Arraste para posicionar →",
+    "cards": {
+      "useSpecialCards": "Usar Cartas Especiais",
+      "manageCards": "Gerenciar Cartas ({{count}})",
+      "effect": "Efeito: {{cardName}}",
+      "multipleEffects": "{{count}} Efeitos Ativos"
+    },
+         "errors": {
+       "selectAtLeastOne": "Selecione pelo menos uma odd para apostar",
+       "enterValidAmount": "Informe um valor válido para a aposta",
+       "matchIdError": "Erro: ID da partida não encontrado. Tente atualizar a página.",
+       "betError": "Erro ao realizar aposta"
+     },
+    "success": {
+      "betPlaced": "Aposta realizada com sucesso!",
+      "cardAdded": "Carta \"{{cardName}}\" adicionada à aposta!",
+      "cardRemoved": "Carta \"{{cardName}}\" removida da aposta!",
+      "allCardsRemoved": "Todas as cartas removidas da aposta"
+    }
   }
 } 

@@ -2,19 +2,23 @@
   "matches": {
     "title": "Partidas do {{clubName}}",
     "loading": "Carregando partidas...",
+    "liveMatch": "Partida Atual",
+    "currentMatch": "Partida do Clube do Coração",
     "tabs": {
       "upcoming": "Próximas",
       "past": "Anteriores"
     },
     "noUpcoming": "Nenhuma partida futura encontrada",
     "noPast": "Nenhuma partida anterior encontrada",
+    "noMatches": "Nenhuma partida encontrada",
     "noHeartClub": {
       "title": "Nenhum Clube do Coração Selecionado",
       "description": "Você precisa selecionar um clube do coração para ver as partidas.",
       "goToDashboard": "Ir para o Painel"
     },
     "errors": {
-      "failedToLoad": "Falha ao carregar partidas"
+      "failedToLoad": "Falha ao carregar partidas",
+      "heartClubMatchError": "Erro ao verificar partida do clube do coração"
     }
   },
   "matchCard": {

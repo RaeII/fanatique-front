@@ -54,7 +54,7 @@ export default function GamePage() {
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const [cardAnimation, setCardAnimation] = useState(false);
 
-  const { t } = useTranslation();
+  const { t } = useTranslation(['game', 'common']);
 
   // UTILITY FUNCTIONS FOR BETTING
   const calculateOdds = (selections) => {
@@ -110,7 +110,7 @@ export default function GamePage() {
     if (!card) {
       // Remover todas as cartas
       setSelectedCards([]);
-      showSuccess('Todas as cartas removidas da aposta');
+      showSuccess(t('game:betting.success.allCardsRemoved'));
       return;
     }
 
@@ -119,13 +119,13 @@ export default function GamePage() {
     if (isCardSelected) {
       // Remover carta específica
       setSelectedCards(selectedCards.filter(c => c.id !== card.id));
-      showSuccess(`Carta "${card.name}" removida da aposta!`);
+      showSuccess(t('game:betting.success.cardRemoved', { cardName: card.name }));
     } else {
       // Adicionar nova carta
       setSelectedCards([...selectedCards, card]);
       setCardAnimation(true);
       setTimeout(() => setCardAnimation(false), 1000);
-      showSuccess(`Carta "${card.name}" adicionada à aposta!`);
+      showSuccess(t('game:betting.success.cardAdded', { cardName: card.name }));
     }
   };
 
@@ -137,12 +137,12 @@ export default function GamePage() {
     }
     
     if (selectedBets.length === 0) {
-      showError("Selecione pelo menos uma odd para apostar");
+      showError(t('game:betting.errors.selectAtLeastOne'));
       return;
     }
     
     if (!betAmount || betAmount <= 0) {
-      showError("Informe um valor válido para a aposta");
+      showError(t('game:betting.errors.enterValidAmount'));
       return;
     }
     
@@ -153,7 +153,7 @@ export default function GamePage() {
     
     // Verificar se todos os selectedBets têm match_id
     if (selectedBets.some(bet => !bet.match_id)) {
-      showError("Erro: ID da partida não encontrado. Tente atualizar a página.");
+      showError(t('game:betting.errors.matchIdError'));
       return;
     }
     
@@ -192,10 +192,10 @@ export default function GamePage() {
       setBetAmount(null);
       setSelectedCards([]);
       
-      showSuccess("Aposta realizada com sucesso!");
+      showSuccess(t('game:betting.success.betPlaced'));
     } catch (error) {
       console.error("Erro ao realizar aposta:", error);
-      showError(error.response?.data?.message || "Erro ao realizar aposta");
+      showError(error.response?.data?.message || t('game:betting.errors.betError'));
     } finally {
       setIsPlacingBet(false);
     }
@@ -403,7 +403,7 @@ export default function GamePage() {
       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-background">
         <div className="flex flex-col items-center">
           <Loader2 className="h-12 w-12 animate-spin text-secondary" />
-          <p className="mt-4 text-text-adaptive/70 dark:text-white/70">Carregando apostas...</p>
+          <p className="mt-4 text-text-adaptive/70 dark:text-white/70">{t('game:betting.loadingBets')}</p>
         </div>
       </div>
     );
@@ -431,7 +431,7 @@ export default function GamePage() {
             className="flex items-center text-white/80 hover:text-white mb-6"
           >
             <ArrowLeft size={18} className="mr-1" />
-            <span>Voltar</span>
+            <span>{t('game:betting.backButton')}</span>
           </button>
 
           {/* Game Info */}
@@ -478,7 +478,7 @@ export default function GamePage() {
                 </div>
               </div>
               <p className="mt-4 text-white/80 max-w-2xl mx-auto">
-                Faça suas apostas no jogo
+                {t('game:betting.makeBets')}
               </p>
             </div>
           )}
@@ -606,10 +606,10 @@ export default function GamePage() {
             <div className="bg-background-overlay rounded-xl p-8 border border-white/5">
               <TrendingDown size={64} className="mx-auto text-white/30 mb-6" />
               <h3 className="text-xl font-semibold text-white mb-4">
-                Nenhum mercado de apostas disponível
+                {t('game:betting.noMarketsAvailable')}
               </h3>
               <p className="text-white/60 max-w-md mx-auto">
-                Os mercados de apostas para este jogo ainda não foram configurados. Volte em breve para ver as opções de apostas.
+                {t('game:betting.noMarketsDescription')}
               </p>
             </div>
           </div>
@@ -640,13 +640,13 @@ export default function GamePage() {
                     <div className="bg-black text-secondary rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3">
                       {selectedBets.length}
                     </div>
-                    <span className="text-sm font-bold">Cupom de Apostas</span>
+                    <span className="text-sm font-bold">{t('game:betting.betSlip')}</span>
                   </div>
                   <div className="flex items-center">
                     <button
                       onClick={() => setIsCouponMinimized(true)}
                       className="text-black/70 hover:text-black mr-2 p-1 rounded"
-                      title="Minimizar cupom"
+                      title={t('game:betting.minimizeCoupon')}
                     >
                       <Minimize2 size={14} />
                     </button>
@@ -693,7 +693,7 @@ export default function GamePage() {
                             className="w-full p-2 rounded-lg border border-dashed border-secondary/50 hover:border-secondary transition-colors flex items-center justify-center text-secondary hover:text-secondary/80"
                           >
                             <Sparkles className="w-4 h-4 mr-2" />
-                            <span className="text-sm">Gerenciar Cartas ({selectedCards.length})</span>
+                            <span className="text-sm">{t('game:betting.cards.manageCards', { count: selectedCards.length })}</span>
                           </button>
                           
                           {/* Lista de cartas selecionadas */}
@@ -737,7 +737,7 @@ export default function GamePage() {
                           className="w-full p-2 rounded-lg border border-dashed border-white/30 hover:border-secondary/60 transition-colors flex items-center justify-center text-white/60 hover:text-white"
                         >
                           <Sparkles className="w-4 h-4 mr-2" />
-                          <span className="text-sm">Usar Cartas Especiais</span>
+                          <span className="text-sm">{t('game:betting.cards.useSpecialCards')}</span>
                         </button>
                       )}
                     </div>
@@ -757,20 +757,20 @@ export default function GamePage() {
                         min="1"
                         step="1"
                         className="flex-1 px-3 py-2 text-sm border border-white/20 rounded-lg bg-black/40 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary backdrop-blur-sm"
-                        placeholder="Valor da Aposta ($CHIPS)"
+                        placeholder={t('game:betting.betAmount')}
                       />
                     </div>
                   </div>
                   
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-white/60">Odd Total:</span>
+                    <span className="text-xs text-white/60">{t('game:betting.totalOdds')}:</span>
                     <span className="text-sm font-bold text-secondary">
                       {calculateOdds(selectedBets).toFixed(2)}
                     </span>
                   </div>
                   
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs text-white/60">Retorno Possível:</span>
+                    <span className="text-xs text-white/60">{t('game:betting.possibleReturn')}:</span>
                     <span className="text-sm font-bold text-primary">
                       {calculatePayout(betAmount, calculateOdds(selectedBets)).toFixed(2)} CHIPS
                     </span>
@@ -783,8 +783,8 @@ export default function GamePage() {
                         <Sparkles className="w-3 h-3 text-secondary mr-2" />
                         <span>
                           {selectedCards.length === 1 
-                            ? `Efeito: ${selectedCards[0].name}`
-                            : `${selectedCards.length} Efeitos Ativos`
+                            ? t('game:betting.cards.effect', { cardName: selectedCards[0].name })
+                            : t('game:betting.cards.multipleEffects', { count: selectedCards.length })
                           }
                         </span>
                       </div>
@@ -801,7 +801,7 @@ export default function GamePage() {
                     ) : (
                       <Check className="mr-2 h-4 w-4" />
                     )}
-                    {`Apostar${betAmount ? ` ${betAmount} $CHIPS` : ""}`}
+                    {betAmount ? t('game:betting.placeBetWithAmount', { amount: betAmount }) : t('game:betting.placeBet')}
                   </Button>
                   
                   {/* Indicador visual de movimento */}
@@ -814,7 +814,7 @@ export default function GamePage() {
                   </div>
                   <div className="text-center mt-2">
                     <span className="text-xs text-white/40">
-                      ← Arraste para posicionar →
+                      {t('game:betting.dragToPosition')}
                     </span>
                   </div>
                 </div>
@@ -828,7 +828,7 @@ export default function GamePage() {
                   <button
                     onClick={() => setIsCouponMinimized(false)}
                     className="w-full hover:scale-[1.02] text-black p-4 transition-all duration-300 rounded-xl"
-                    title="Expandir cupom de apostas"
+                    title={t('game:betting.expandCoupon')}
                   >
                     <div className="flex items-center justify-between min-w-[200px]">
                       <div className="flex items-center">
@@ -836,7 +836,7 @@ export default function GamePage() {
                           {selectedBets.length}
                         </div>
                         <div className="text-left">
-                          <div className="text-sm font-bold">Apostas Ativas</div>
+                          <div className="text-sm font-bold">{t('game:betting.activeBets')}</div>
                           <div className="text-xs opacity-80">
                             Odd: {calculateOdds(selectedBets).toFixed(2)}
                           </div>
@@ -853,9 +853,9 @@ export default function GamePage() {
                         setIsCouponMinimized(false);
                       }}
                       className="w-full text-xs text-black/70 hover:text-black py-1 transition-colors"
-                      title="Limpar todas as apostas"
+                      title={t('game:betting.clearAllBets')}
                     >
-                      Limpar Apostas
+                                              {t('game:betting.clearBets')}
                     </button>
                   </div>
                 </div>

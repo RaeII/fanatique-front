@@ -47,7 +47,7 @@ export default function BuyFantokensPage() {
       setStablecoins(stablecoinsData);
     } catch (error) {
       console.error('Erro ao buscar stablecoins:', error);
-      toast.error('Não foi possível carregar as stablecoins');
+      toast.error(t('tokens:messages.loadStablecoinsError'));
     } finally {
       setLoadingStablecoins(false);
     }
@@ -99,7 +99,7 @@ export default function BuyFantokensPage() {
           setStablecoins(stablecoinsData);
         } catch (error) {
           console.error('Erro ao buscar stablecoins:', error);
-          toast.error('Não foi possível carregar as stablecoins');
+          toast.error(t('tokens:messages.loadStablecoinsError'));
         } finally {
           setLoadingStablecoins(false);
         }
@@ -118,7 +118,7 @@ export default function BuyFantokensPage() {
         setClubs(clubs);
       } catch (error) {
         console.error('Erro ao buscar clubes:', error);
-        toast.error('Não foi possível carregar os clubes');
+        toast.error(t('tokens:messages.loadClubsError'));
       } finally {
         setLoading(false);
       }
@@ -137,7 +137,7 @@ export default function BuyFantokensPage() {
           setTransactions(data);
         } catch (error) {
           console.error('Erro ao buscar transações:', error);
-          toast.error('Não foi possível carregar as transações');
+          toast.error(t('tokens:messages.loadTransactionsError'));
         } finally {
           setLoadingTransactions(false);
         }
@@ -172,7 +172,7 @@ export default function BuyFantokensPage() {
 
   const handleBuyTokens = async () => {
     if (!isConnected || !account) {
-      toast.error('Conecte sua carteira para continuar com a compra');
+      toast.error(t('tokens:messages.connectWallet'));
       try {
         await connectWallet();
       } catch (error) {
@@ -195,7 +195,7 @@ export default function BuyFantokensPage() {
       
       // Obtém o endereço da carteira do usuário do contexto
       if (!account) {
-        toast.error('Você precisa estar conectado a uma carteira para comprar tokens');
+        toast.error(t('tokens:messages.connectWalletError'));
         return;
       }
       
@@ -214,7 +214,7 @@ export default function BuyFantokensPage() {
         const stablecoinsData = await contractApi.getStablecoinBalances(account);
         setStablecoins(stablecoinsData);
         
-        toast.success(`Compra de ${quantity} ${selectedClub.symbol} realizada com sucesso!`);
+        toast.success(t('tokens:messages.purchaseSuccess', { quantity, symbol: selectedClub.symbol }));
       } else {
         // Compra de fantoken
         const transferData = {
@@ -230,7 +230,7 @@ export default function BuyFantokensPage() {
         const tokens = await contractApi.getWalletTokens(account);
         setWalletTokens(tokens);
         
-        toast.success(`Compra de ${quantity} FanTokens do ${selectedClub.name} realizada com sucesso!`);
+        toast.success(t('tokens:messages.purchaseFanTokenSuccess', { quantity, name: selectedClub.name }));
       }
       
       // Atualizar transações
@@ -244,7 +244,7 @@ export default function BuyFantokensPage() {
       setQuantity(1);
     } catch (error) {
       console.error('Erro ao processar pagamento:', error);
-      toast.error('Falha ao processar o pagamento. Tente novamente.');
+      toast.error(t('tokens:messages.paymentError'));
     } finally {
       setProcessingPayment(false);
     }
@@ -295,7 +295,7 @@ export default function BuyFantokensPage() {
           setTransactions(data);
         } catch (error) {
           console.error('Erro ao buscar transações:', error);
-          toast.error('Não foi possível carregar as transações');
+          toast.error(t('tokens:messages.loadTransactionsError'));
         } finally {
           setLoadingTransactions(false);
         }
@@ -325,7 +325,7 @@ export default function BuyFantokensPage() {
       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-background">
         <div className="flex flex-col items-center">
           <Loader2 className="h-12 w-12 animate-spin text-secondary" />
-          <p className="mt-4 text-white/70">Carregando...</p>
+          <p className="mt-4 text-white/70">{t('tokens:buyTokens.loading')}</p>
         </div>
       </div>
     );
@@ -424,7 +424,7 @@ export default function BuyFantokensPage() {
               </div>
               <input
                 type="text"
-                placeholder={activeTokenType === 'fantoken' ? "Buscar clube..." : "Buscar stablecoin..."}
+                placeholder={activeTokenType === 'fantoken' ? t('tokens:search.clubPlaceholder') : t('tokens:search.stablecoinPlaceholder')}
                 className="w-full pl-10 pr-4 py-3 bg-black rounded-lg bg-background-overlay/50 backdrop-blur-sm border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -471,11 +471,11 @@ export default function BuyFantokensPage() {
                   </div>
                 ))}
                 
-                {filteredClubs.length === 0 && (
+                                {filteredClubs.length === 0 && (
                   <div className="text-center py-12">
                     <Football size={48} className="mx-auto text-white/20 mb-4" />
-                    <p className="text-white/60">Nenhum clube encontrado</p>
-              </div>
+                    <p className="text-white/60">{t('tokens:emptyStates.noClubFound')}</p>
+                  </div>
                 )}
                 </div>
               ) : (
@@ -487,7 +487,7 @@ export default function BuyFantokensPage() {
                 ) : stablecoins.length === 0 ? (
                   <div className="text-center py-12">
                     <Coins size={48} className="mx-auto text-white/20 mb-4" />
-                    <p className="text-white/60">Nenhuma stablecoin encontrada</p>
+                    <p className="text-white/60">{t('tokens:emptyStates.noStablecoinFound')}</p>
                     </div>
                   ) : (
                     stablecoins.map(coin => (
@@ -527,7 +527,7 @@ export default function BuyFantokensPage() {
             ) : transactions.length === 0 ? (
               <div className="text-center py-12">
                 <Receipt size={48} className="mx-auto text-white/20 mb-4" />
-                <p className="text-white/60">Nenhuma transação encontrada</p>
+                <p className="text-white/60">{t('tokens:emptyStates.noTransactions')}</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -547,8 +547,8 @@ export default function BuyFantokensPage() {
                         <Receipt size={48} className="mx-auto text-white/20 mb-4" />
                         <p className="text-white/60">
                           {activeTokenType === 'fantoken' 
-                            ? 'Nenhuma transação de FanToken encontrada'
-                            : 'Nenhuma transação de Stablecoin encontrada'}
+                            ? t('tokens:emptyStates.noFanTokenTransactions')
+                            : t('tokens:emptyStates.noStablecoinTransactions')}
                         </p>
                       </div>
                     );
@@ -596,7 +596,7 @@ export default function BuyFantokensPage() {
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <ExternalLink size={10} className="mr-1" />
-                                  Ver
+                                  {t('tokens:transaction.view')}
                               </a>
                             )}
                           </div>
@@ -618,15 +618,15 @@ export default function BuyFantokensPage() {
         ) : (
           <div className="max-w-6xl mx-auto">
           <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Fixed Staking</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">{t('tokens:stake.fixedStaking')}</h2>
               
               <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
                 <div className="flex bg-background-overlay/50 backdrop-blur-sm rounded-lg border border-white/10 p-1">
                   <button className="px-4 py-2 rounded-md bg-secondary text-black font-medium">
-                    Active
+                    {t('tokens:stake.active')}
                   </button>
                   <button className="px-4 py-2 rounded-md text-white/60 hover:text-white">
-                    Ended
+                    {t('tokens:stake.ended')}
                   </button>
                 </div>
                 
@@ -636,7 +636,7 @@ export default function BuyFantokensPage() {
                     <div className="bg-black relative w-10 h-6 bg-background-overlay/50 rounded-full peer-checked:bg-secondary/80 peer-focus:ring-2 peer-focus:ring-secondary/20 transition-all">
                       <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform peer-checked:translate-x-4 "></div>
                   </div>
-                    <span className="ml-3 text-sm text-white">Staked Only</span>
+                    <span className="ml-3 text-sm text-white">{t('tokens:stake.stakedOnly')}</span>
                   </label>
                   
                   <div className="relative">
@@ -645,7 +645,7 @@ export default function BuyFantokensPage() {
                     </div>
                     <input
                       type="text"
-                      placeholder="Search"
+                      placeholder={t('tokens:search.searchPlaceholder')}
                       className="pl-10 bg-black pr-4 py-2 rounded-lg bg-background-overlay/50 backdrop-blur-sm border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-secondary w-48"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -662,7 +662,7 @@ export default function BuyFantokensPage() {
                 ) : filteredClubs.length === 0 ? (
                   <div className="col-span-full text-center py-12">
                     <Football size={48} className="mx-auto text-white/20 mb-4" />
-                    <p className="text-white/60">Nenhum clube encontrado</p>
+                    <p className="text-white/60">{t('tokens:emptyStates.noClubFound')}</p>
                   </div>
                 ) : (
                   filteredClubs.map(club => {
@@ -688,35 +688,35 @@ export default function BuyFantokensPage() {
                               </div>
                             )}
                           </div>
-                          <span className="text-white font-medium">Earn {club.symbol}</span>
+                          <span className="text-white font-medium">{t('tokens:stake.earn')} {club.symbol}</span>
                         </div>
                         
                         <div className="mb-4">
                           <span className="text-white text-3xl font-bold">{apr}%</span>
-                          <span className="text-white/60 text-sm ml-2">APR</span>
+                          <span className="text-white/60 text-sm ml-2">{t('tokens:stake.apr')}</span>
                         </div>
                         
                         <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-                          <div>
-                            <p className="text-white/60">TVL</p>
-                            <p className="text-white font-semibold">${tvl}k</p>
+                                                      <div>
+                              <p className="text-white/60">{t('tokens:stake.tvl')}</p>
+                              <p className="text-white font-semibold">${tvl}k</p>
+                            </div>
+                            <div>
+                              <p className="text-white/60">{t('tokens:stake.total')} {club.symbol}</p>
+                              <p className="text-white font-semibold">{totalTokens}k</p>
+                            </div>
+                            <div>
+                              <p className="text-white/60">{t('tokens:stake.yourDeposits')}</p>
+                              <p className="text-white font-semibold">{userBalance} {club.symbol}</p>
                           </div>
-                          <div>
-                            <p className="text-white/60">Total {club.symbol}</p>
-                            <p className="text-white font-semibold">{totalTokens}k</p>
-                          </div>
-                          <div>
-                            <p className="text-white/60">Your Deposits</p>
-                            <p className="text-white font-semibold">{userBalance} {club.symbol}</p>
-                        </div>
-                          <div>
-                            <p className="text-white/60">Earned</p>
-                            <p className="text-secondary font-semibold">{earned} {club.symbol}</p>
-                          </div>
+                            <div>
+                              <p className="text-white/60">{t('tokens:stake.earned')}</p>
+                              <p className="text-secondary font-semibold">{earned} {club.symbol}</p>
+                            </div>
                         </div>
                         
                         <button className="w-full py-3 bg-secondary hover:bg-secondary/90 text-black font-medium rounded-lg transition-colors">
-                          View More
+                          {t('tokens:stake.viewMore')}
                         </button>
                       </div>
                     );
@@ -735,7 +735,7 @@ export default function BuyFantokensPage() {
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl font-bold text-white">
-                  {showQRCode ? "Realize o Pagamento" : selectedClub.name}
+                  {showQRCode ? t('tokens:modal.payment') : selectedClub.name}
                 </h3>
                 <Button variant="ghost" size="icon" onClick={handleCloseModal} className="text-white/70 hover:text-white">
                   <X size={18} />
@@ -761,7 +761,7 @@ export default function BuyFantokensPage() {
                   </div>
 
                   <div className="text-center mb-6">
-                    <p className="text-white/60 mb-2">Saldo atual</p>
+                    <p className="text-white/60 mb-2">{t('tokens:modal.currentBalance')}</p>
                     <p className="text-2xl font-bold text-white">
                       {getClubTokenBalance(selectedClub.id)} {selectedClub.symbol}
                     </p>
@@ -769,7 +769,7 @@ export default function BuyFantokensPage() {
 
                   <div className="mb-6">
                     <label className="block text-white/80 mb-3 text-center">
-                      Quantidade
+                      {t('tokens:modal.quantity')}
                     </label>
                     <div className="flex items-center justify-center gap-4">
                       <Button 
@@ -799,15 +799,15 @@ export default function BuyFantokensPage() {
 
                   <div className="bg-background-overlay/30 backdrop-blur-sm border border-white/10 rounded-lg p-4 mb-6">
                     <div className="flex justify-between mb-2">
-                      <span className="text-white/70">Preço por token:</span>
+                      <span className="text-white/70">{t('tokens:modal.pricePerToken')}</span>
                       <span className="text-white font-medium">R$ 1,00</span>
                     </div>
                     <div className="flex justify-between mb-2">
-                      <span className="text-white/70">Quantidade:</span>
+                      <span className="text-white/70">{t('tokens:modal.quantity')}</span>
                       <span className="text-white font-medium">{quantity}</span>
                     </div>
                     <div className="flex justify-between pt-2 border-t border-white/10">
-                      <span className="text-white font-medium">Total:</span>
+                      <span className="text-white font-medium">{t('tokens:modal.total')}</span>
                       <span className="text-secondary font-bold">R$ {quantity.toFixed(2)}</span>
                     </div>
                   </div>
@@ -816,13 +816,13 @@ export default function BuyFantokensPage() {
                     className="w-full bg-secondary hover:bg-secondary/90 text-black font-semibold py-3"
                     onClick={handleBuyTokens}
                   >
-                    Comprar Tokens
+                    {t('tokens:modal.buy')}
                   </Button>
                 </>
               ) : (
                 <div className="text-center">
                   <p className="text-white/70 mb-6">
-                    Escaneie o QR Code para realizar o pagamento
+                    {t('tokens:modal.scanQrCode')}
                   </p>
                   <div className="bg-white/10 rounded-lg p-4 mb-6">
                     <img 
@@ -832,7 +832,7 @@ export default function BuyFantokensPage() {
                     />
                   </div>
                   <p className="text-white/60 mb-6">
-                    Valor: R$ {quantity.toFixed(2)}
+                    {t('tokens:modal.value')} R$ {quantity.toFixed(2)}
                   </p>
                   <Button 
                     className="w-full bg-secondary hover:bg-secondary/90 text-black font-semibold py-3"
@@ -842,7 +842,7 @@ export default function BuyFantokensPage() {
                     {processingPayment ? (
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     ) : null}
-                    {processingPayment ? "Processando..." : "Confirmar Pagamento"}
+                    {processingPayment ? t('tokens:modal.processing') : t('tokens:modal.confirmPayment')}
                   </Button>
                 </div>
               )}

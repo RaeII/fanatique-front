@@ -29,8 +29,7 @@
     "usernameInvalid": "Nome de usuário deve conter apenas letras, números e underscore (_)",
     "registerError": "Erro ao cadastrar usuário",
     "walletError": "Erro ao conectar carteira",
-    "checkRegistrationError": "Erro ao verificar se o usuário está cadastrado",
-    "loginFailed": "Falha no login"
+    "checkRegistrationError": "Erro ao verificar se o usuário está cadastrado"
   },
   "success": {
     "registered": "Cadastro realizado com sucesso!"

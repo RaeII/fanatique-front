@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useWalletContext } from '../hooks/useWalletContext';
 import { 
   Loader2, 
@@ -25,6 +26,7 @@ import cardSystem from '../utils/cardSystem';
 
 export default function MyBetsPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation('my-bets');
   const { isAuthenticated, isInitialized, getUserData, account: walletAddress } = useWalletContext();
   const [loading, setLoading] = useState(true);
   const [userBets, setUserBets] = useState([]);
@@ -52,7 +54,7 @@ export default function MyBetsPage() {
       }
     } catch (error) {
       console.error('Erro ao carregar apostas do usuário:', error);
-      showError('Erro ao carregar suas apostas');
+      showError(t('myBets.errors.loadFailed'));
       setUserBets([]);
       setFilteredBets([]);
     }
@@ -75,6 +77,7 @@ export default function MyBetsPage() {
       setBetCards(cardsData);
     } catch (error) {
       console.error('Erro ao carregar cartas das apostas:', error);
+      showError(t('myBets.errors.loadCardsFailed'));
     }
   };
 
@@ -93,12 +96,14 @@ export default function MyBetsPage() {
           }
         } catch (error) {
           console.error(`Erro ao carregar dados da partida ${matchId}:`, error);
+          showError(t('myBets.errors.loadMatchFailed', { id: matchId }));
         }
       }
       
       setMatchesData(matchesInfo);
     } catch (error) {
       console.error('Erro ao carregar dados das partidas:', error);
+      showError(t('myBets.errors.loadMatchesFailed'));
     } finally {
       setLoadingMatches(false);
     }
@@ -109,7 +114,7 @@ export default function MyBetsPage() {
     setRefreshing(true);
     await loadUserBets();
     setRefreshing(false);
-    showSuccess('Apostas atualizadas!');
+    showSuccess(t('myBets.refreshSuccess'));
   };
 
   // Função para filtrar apostas
@@ -144,7 +149,7 @@ export default function MyBetsPage() {
         await loadUserBets();
       } catch (error) {
         console.error('Error loading data:', error);
-        showError('Falha ao carregar dados das apostas');
+        showError(t('myBets.errors.loadDataFailed'));
         navigate('/');
       } finally {
         setLoading(false);
@@ -194,7 +199,7 @@ export default function MyBetsPage() {
       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-background">
         <div className="flex flex-col items-center">
           <Loader2 className="h-12 w-12 animate-spin text-secondary" />
-          <p className="mt-4 text-white/70">Carregando suas apostas...</p>
+          <p className="mt-4 text-white/70">{t('myBets.loading')}</p>
         </div>
       </div>
     );
@@ -211,7 +216,7 @@ export default function MyBetsPage() {
             className="flex items-center text-white/80 hover:text-white mb-6 transition-colors"
           >
             <ArrowLeft size={18} className="mr-1" />
-            <span>Voltar</span>
+            <span>{t('myBets.backButton')}</span>
           </button>
 
           {/* Title and Stats */}
@@ -219,10 +224,10 @@ export default function MyBetsPage() {
             <div className="text-white">
               <h1 className="text-3xl font-bold mb-2 flex items-center">
                 <Trophy className="mr-3" size={32} />
-                Minhas Apostas
+                {t('myBets.title')}
               </h1>
               <p className="text-white/80">
-                Acompanhe todas as suas apostas e resultados
+                {t('myBets.subtitle')}
               </p>
             </div>
             
@@ -238,7 +243,7 @@ export default function MyBetsPage() {
                 ) : (
                   <RefreshCw className="w-4 h-4 mr-2" />
                 )}
-                Atualizar
+                {t('myBets.refreshButton')}
               </Button>
             </div>
           </div>
@@ -250,27 +255,27 @@ export default function MyBetsPage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
           <div className="bg-background-overlay rounded-xl p-4 text-center border border-white/5 backdrop-blur-sm">
             <div className="text-2xl font-bold text-primary mb-1">{stats.total}</div>
-            <div className="text-sm text-white/60">Total</div>
+            <div className="text-sm text-white/60">{t('myBets.stats.total')}</div>
           </div>
           <div className="bg-background-overlay rounded-xl p-4 text-center border border-white/5 backdrop-blur-sm">
             <div className="text-2xl font-bold text-yellow-400 mb-1">{stats.pending}</div>
-            <div className="text-sm text-white/60">Pendentes</div>
+            <div className="text-sm text-white/60">{t('myBets.stats.pending')}</div>
           </div>
           <div className="bg-background-overlay rounded-xl p-4 text-center border border-white/5 backdrop-blur-sm">
             <div className="text-2xl font-bold text-green-400 mb-1">{stats.won}</div>
-            <div className="text-sm text-white/60">Ganhas</div>
+            <div className="text-sm text-white/60">{t('myBets.stats.won')}</div>
           </div>
           <div className="bg-background-overlay rounded-xl p-4 text-center border border-white/5 backdrop-blur-sm">
             <div className="text-2xl font-bold text-red-400 mb-1">{stats.lost}</div>
-            <div className="text-sm text-white/60">Perdidas</div>
+            <div className="text-sm text-white/60">{t('myBets.stats.lost')}</div>
           </div>
           <div className="bg-background-overlay rounded-xl p-4 text-center border border-white/5 backdrop-blur-sm">
             <div className="text-2xl font-bold text-secondary mb-1">{stats.totalStaked.toFixed(2)}</div>
-            <div className="text-sm text-white/60">CHIPS Apostados</div>
+            <div className="text-sm text-white/60">{t('myBets.stats.totalStaked')}</div>
           </div>
           <div className="bg-background-overlay rounded-xl p-4 text-center border border-white/5 backdrop-blur-sm">
             <div className="text-2xl font-bold text-green-400 mb-1">{stats.totalWon.toFixed(2)}</div>
-            <div className="text-sm text-white/60">CHIPS Ganhos</div>
+            <div className="text-sm text-white/60">{t('myBets.stats.totalWon')}</div>
           </div>
         </div>
 
@@ -278,36 +283,36 @@ export default function MyBetsPage() {
         <div className="bg-background-overlay rounded-xl p-6 mb-8 border border-white/5 backdrop-blur-sm">
           <div className="flex items-center mb-4">
             <div className="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-            <h3 className="text-lg font-semibold text-white">Filtros</h3>
+            <h3 className="text-lg font-semibold text-white">{t('myBets.filters.title')}</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">
-                Status
+                {t('myBets.filters.status')}
               </label>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
                 className="w-full px-4 py-2 border border-white/20 rounded-lg bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary backdrop-blur-sm transition-all duration-300 [&>option]:bg-black [&>option]:text-white [&>option]:py-2"
               >
-                <option value="all" className="bg-black text-white">Todos</option>
-                <option value="pending" className="bg-black text-white">Pendentes</option>
-                <option value="won" className="bg-black text-white">Ganhas</option>
-                <option value="lost" className="bg-black text-white">Perdidas</option>
+                <option value="all" className="bg-black text-white">{t('myBets.filters.all')}</option>
+                <option value="pending" className="bg-black text-white">{t('myBets.filters.pending')}</option>
+                <option value="won" className="bg-black text-white">{t('myBets.filters.won')}</option>
+                <option value="lost" className="bg-black text-white">{t('myBets.filters.lost')}</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">
-                Tipo
+                {t('myBets.filters.type')}
               </label>
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
                 className="w-full px-4 py-2 border border-white/20 rounded-lg bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary backdrop-blur-sm transition-all duration-300 [&>option]:bg-black [&>option]:text-white [&>option]:py-2"
               >
-                <option value="all" className="bg-black text-white">Todos</option>
-                <option value="single" className="bg-black text-white">Simples</option>
-                <option value="multiple" className="bg-black text-white">Múltipla</option>
+                <option value="all" className="bg-black text-white">{t('myBets.filters.all')}</option>
+                <option value="single" className="bg-black text-white">{t('myBets.filters.single')}</option>
+                <option value="multiple" className="bg-black text-white">{t('myBets.filters.multiple')}</option>
               </select>
             </div>
           </div>
@@ -322,31 +327,31 @@ export default function MyBetsPage() {
                   <div className="flex-1">
                     <div className="flex items-center mb-2">
                       <div className="text-lg font-semibold text-white mr-4">
-                        {bet.bet_type === 'single' ? 'Aposta Simples' : 'Aposta Múltipla'}
+                        {bet.bet_type === 'single' ? t('myBets.betTypes.single') : t('myBets.betTypes.multiple')}
                       </div>
      
                     </div>
                     <div className="flex items-center text-sm text-white/60 mb-1">
                       <Calendar size={16} className="mr-2" />
-                      <span>{new Date(bet.created_at).toLocaleDateString('pt-BR')} às {new Date(bet.created_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
+                      <span>{new Date(bet.created_at).toLocaleDateString('pt-BR')} {t('myBets.labels.time')} {new Date(bet.created_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
                     <div className="text-sm text-white/60">
-                      {bet.details?.length || 0} seleção(ões)
+                      {t('myBets.betDetails.selections', { count: bet.details?.length || 0 })}
                     </div>
                   </div>
                   
                   <div className="mt-3 lg:mt-0 lg:text-right">
                     <div className="grid grid-cols-3 lg:grid-cols-1 gap-3 lg:gap-2">
                       <div className="text-center lg:text-right">
-                        <div className="text-xs text-white/60">Valor</div>
+                        <div className="text-xs text-white/60">{t('myBets.labels.amount')}</div>
                         <div className="font-semibold text-white">{Number(bet.bet_amount || 0).toFixed(2)} CHIPS</div>
                       </div>
                       <div className="text-center lg:text-right">
-                        <div className="text-xs text-white/60">Odd</div>
+                        <div className="text-xs text-white/60">{t('myBets.labels.odds')}</div>
                         <div className="font-semibold text-primary">{Number(bet.total_odds || 0).toFixed(2)}</div>
                       </div>
                       <div className="text-center lg:text-right">
-                        <div className="text-xs text-white/60">Retorno</div>
+                        <div className="text-xs text-white/60">{t('myBets.labels.return')}</div>
                         <div className="font-semibold text-secondary">
                           {Number(bet.potential_payout || 0).toFixed(2)} CHIPS
                         </div>
@@ -360,7 +365,7 @@ export default function MyBetsPage() {
                   <div className="border-t border-white/10 pt-4">
                     <h4 className="text-sm font-medium text-white mb-4 flex items-center">
                       <div className="w-1 h-1 bg-secondary rounded-full mr-2"></div>
-                      Detalhes da Aposta:
+                      {t('myBets.betDetails.title')}
                     </h4>
                     <div className="space-y-3">
                       {bet.details.map((detail, index) => (
@@ -381,17 +386,17 @@ export default function MyBetsPage() {
                               <div className="w-2 h-8 bg-gradient-to-b from-secondary to-primary rounded-full opacity-60"></div>
                               <div>
                                 <span className="text-white font-medium">
-                                  Seleção {index + 1}
+                                  {t('myBets.betDetails.selection', { number: index + 1 })}
                                 </span>
                                 <div className="text-xs text-white/60 mt-1">
-                                  {detail.description || 'Aposta esportiva'}
+                                  {detail.description || t('myBets.betDetails.description')}
                                 </div>
                               </div>
                             </div>
                             
                             <div className="flex items-center space-x-3">
                               <div className="text-right">
-                                <div className="text-xs text-white/50 uppercase tracking-wide">Odd</div>
+                                <div className="text-xs text-white/50 uppercase tracking-wide">{t('myBets.labels.odds')}</div>
                                 <div className="font-bold text-lg bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
                                   {Number(detail.odd_value || 0).toFixed(2)}
                                 </div>
@@ -416,7 +421,7 @@ export default function MyBetsPage() {
                         <div className="flex justify-between items-center">
                           <span className="text-white/80 font-medium flex items-center">
                             <Users size={16} className="mr-2" />
-                            Odd Total da Múltipla:
+                            {t('myBets.betDetails.totalOdds')}
                           </span>
                           <span className="font-bold text-lg bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
                             {Number(bet.total_odds || 0).toFixed(2)}
@@ -432,7 +437,7 @@ export default function MyBetsPage() {
                   <div className="border-t border-white/10 pt-4 mt-4">
                     <h4 className="text-sm font-medium text-white mb-3 flex items-center">
                       <Sparkles className="w-3 h-3 text-secondary mr-2" />
-                      Cartas Utilizadas:
+                      {t('myBets.cards.title')}
                     </h4>
                     
                     {/* Leque de Cartas */}
@@ -478,7 +483,10 @@ export default function MyBetsPage() {
                       {/* Badge com quantidade */}
                       <div className="ml-4 flex items-center space-x-2">
                         <div className="bg-secondary/20 border border-secondary/30 rounded-full px-2 py-1 text-xs text-secondary font-medium">
-                          {betCards[bet.id].length} carta{betCards[bet.id].length > 1 ? 's' : ''}
+                          {betCards[bet.id].length > 1 
+                            ? t('myBets.cards.count_plural', { count: betCards[bet.id].length })
+                            : t('myBets.cards.count', { count: betCards[bet.id].length })
+                          }
                         </div>
                       </div>
                     </div>
@@ -490,7 +498,7 @@ export default function MyBetsPage() {
                   <div className="border-t border-white/10 pt-4 mt-4">
                     <div className="flex items-center text-sm text-white/60">
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      <span>Carregando informações da partida...</span>
+                      <span>{t('myBets.match.loadingInfo')}</span>
                     </div>
                   </div>
                 )}
@@ -514,7 +522,7 @@ export default function MyBetsPage() {
                           size="sm"
                         >
                           <ExternalLink size={14} className="mr-1" />
-                          Ver Odds
+                          {t('myBets.match.viewOdds')}
                         </Button>
                       </div>
                     </div>
@@ -526,7 +534,7 @@ export default function MyBetsPage() {
                   <div className="border-t border-white/10 pt-4 mt-4">
                     <div className="flex items-center text-sm text-white/60">
                       <Clock size={16} className="mr-2" />
-                      <span>Partida ID: {bet.match_id}</span>
+                      <span>{t('myBets.match.matchId', { id: bet.match_id })}</span>
                     </div>
                   </div>
                 )}
@@ -538,12 +546,12 @@ export default function MyBetsPage() {
             <div className="bg-background-overlay rounded-xl p-8 border border-white/5 backdrop-blur-sm max-w-md mx-auto">
               <TrendingDown size={64} className="mx-auto text-white/30 mb-6" />
               <h3 className="text-xl font-semibold text-white mb-4">
-                {userBets.length === 0 ? 'Nenhuma aposta encontrada' : 'Nenhuma aposta corresponde aos filtros'}
+                {userBets.length === 0 ? t('myBets.empty.noBets') : t('myBets.empty.noFilteredBets')}
               </h3>
               <p className="text-white/60 mb-6">
                 {userBets.length === 0 
-                  ? 'Você ainda não fez nenhuma aposta. Que tal começar agora?'
-                  : 'Tente ajustar os filtros para ver mais resultados.'
+                  ? t('myBets.empty.noBetsDescription')
+                  : t('myBets.empty.noFilteredDescription')
                 }
               </p>
               {userBets.length === 0 && (
@@ -552,7 +560,7 @@ export default function MyBetsPage() {
                   className="bg-gradient-to-r from-secondary to-primary hover:from-secondary/90 hover:to-primary/90 text-black font-semibold transition-all duration-300"
                 >
                   <TrendingUp className="w-4 h-4 mr-2" />
-                  Fazer Primeira Aposta
+                  {t('myBets.empty.firstBetButton')}
                 </Button>
               )}
             </div>

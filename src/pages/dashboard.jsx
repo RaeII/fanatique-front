@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useWalletContext } from '../hooks/useWalletContext';
-import { showError, showSuccess } from '../lib/toast';
+//import { showInfo, showError } from '../lib/toast';
 import { Button } from '../components/ui/button';
 import { useUserContext } from '../hooks/useUserContext';
 //import { useCardSystem } from '../hooks/useCardSystem';
 import matchApi from '../api/match';
 import MatchCard from '../components/MatchCard';
-import { Loader2, Wallet } from 'lucide-react';
+import { LoginHandler } from '../components/LoginHandler';
 
 
 export default function DashboardPage() {
@@ -18,14 +18,7 @@ export default function DashboardPage() {
     account, 
     isAuthenticated,
     isConnected, 
-    connectWallet,
-    signing,
-    checkWalletExists,
-    registerWithSignature,
-    requestSignature,
-    isChilizNetwork,
-    verifyAndSwitchNetwork,
-    ensureAccountAvailable
+    connectWallet
   } = useWalletContext();
   const { userClubsData, } = useUserContext();
   //const { getUserCards } = useCardSystem();
@@ -34,8 +27,6 @@ export default function DashboardPage() {
   //const [showTreasureChest, setShowTreasureChest] = useState(false);
   //const [userCards, setUserCards] = useState([]);
   // const [liveGameClubs, setLiveGameClubs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [networkLoading, setNetworkLoading] = useState(false);
 
 
 
@@ -61,15 +52,6 @@ export default function DashboardPage() {
     }
   }, [userClubsData]);
 
-  // Efeito para parar o loading quando o usuário ficar autenticado
-  useEffect(() => {
-    if (isAuthenticated && (loading || signing || networkLoading)) {
-      console.log('Dashboard: Usuário autenticado, parando loading...');
-      setLoading(false);
-      setNetworkLoading(false);
-    }
-  }, [isAuthenticated, loading, signing, networkLoading]);
-
   const checkHeartClubMatch = async (clubId) => {
     try {
       const clubGames = await matchApi.getMatchesByClub(clubId);
@@ -89,180 +71,6 @@ export default function DashboardPage() {
     } catch (error) {
       console.error('Erro ao verificar partida do clube do coração:', error);
       setHeartClubMatch(null);
-    }
-  };
-
-  // Função para verificar se o usuário está cadastrado (baseada no LoginHandler)
-  const checkIfUserRegistered = async () => {
-    try {
-      setLoading(true);
-      
-      // Primeiro, garantir que temos um endereço de carteira válido
-      let currentAccount = account;
-      
-      if (!currentAccount) {
-        console.log('Dashboard: checkIfUserRegistered - Conta não encontrada, aguardando...');
-        
-        // Usa o método auxiliar para garantir que a conta esteja disponível
-        currentAccount = await ensureAccountAvailable(3, 500);
-        
-        if (!currentAccount) {
-          console.error('Dashboard: checkIfUserRegistered - Não foi possível obter o endereço da carteira');
-          setLoading(false);
-          return;
-        }
-        
-        console.log('Dashboard: checkIfUserRegistered - Endereço obtido com sucesso:', currentAccount);
-      }
-      
-      console.log('Dashboard: checkIfUserRegistered - Verificando carteira:', currentAccount);
-      
-      // Verifica se o usuário já está cadastrado - passando o endereço explicitamente
-      const walletCheck = await checkWalletExists(currentAccount);
-      
-      if (!walletCheck.success) {
-        showError(walletCheck.message || t('app:errors.checkRegistrationError'));
-        setLoading(false);
-        return;
-      }
-      
-      // Se o usuário não estiver cadastrado, registra automaticamente
-      if (!walletCheck.exists) {
-        console.log('Dashboard: Usuário não cadastrado, registrando automaticamente...');
-        
-        // Verificar e trocar para a rede Chiliz se necessário
-        if (!isChilizNetwork) {
-          setNetworkLoading(true);
-          const networkResult = await verifyAndSwitchNetwork();
-          setNetworkLoading(false);
-          
-          if (!networkResult.success) {
-            showError(networkResult.message || "Você precisa estar na rede Chiliz para continuar");
-            setLoading(false);
-            return;
-          }
-        }
-        
-        // Registra o usuário automaticamente sem solicitar nome
-        const registerResult = await registerWithSignature(currentAccount);
-        
-        if (registerResult === true) {
-          showSuccess(t('app:success.registered'));
-          
-          // Aguarda um pouco para garantir persistência
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          
-          setLoading(false);
-          return;
-        } else {
-          showError(t('app:errors.registerError'));
-          setLoading(false);
-          return;
-        }
-      }
-      
-      // Verificar e trocar para a rede Chiliz se necessário
-      if (!isChilizNetwork) {
-        setNetworkLoading(true);
-        const networkResult = await verifyAndSwitchNetwork();
-        setNetworkLoading(false);
-        
-        if (!networkResult.success) {
-          showError(networkResult.message || "Você precisa estar na rede Chiliz para continuar");
-          setLoading(false);
-          return;
-        }
-      }
-      
-      // Solicita assinatura com o endereço explícito
-      const result = await requestSignature(currentAccount);
-      
-      // Verifica se o login foi bem-sucedido
-      if (result === true) {
-        // Aguarda um pouco para garantir que os dados estejam persistidos
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        setLoading(false);
-        return;
-      } else {
-        showError(t('app:errors.loginFailed'));
-      }
-      
-      setLoading(false);
-    } catch {
-      showError(t('app:errors.checkRegistrationError'));
-      setLoading(false);
-    }
-  };
-
-  // Função para conectar a carteira (baseada no LoginHandler)
-  const handleConnectWallet = async () => {
-    try {
-      // Evita múltiplas tentativas enquanto está carregando
-      if (loading || signing || networkLoading) {
-        console.log('Dashboard: Bloqueado devido a processo em andamento');
-        return;
-      }
-      
-      // Verifica se MetaMask está disponível
-      if (!window.ethereum) {
-        console.log('Dashboard: MetaMask não encontrada');
-        showError('MetaMask não está instalada');
-        return;
-      }
-      
-      setLoading(true);
-      
-      let connected = true;
-
-      console.log("\n\n isConnected dashboard", isConnected,"\n\n");
-
-      if (!isConnected) {
-        connected = await connectWallet();
-        
-        if (!connected) {
-          console.log('Dashboard: Falha na conexão');
-          setLoading(false);
-          return;
-        }
-      } else {
-        console.log('Dashboard: Carteira já estava conectada');
-      }
-
-      console.log("\n\n account dashboard", account,"\n\n");
-      
-      // Verifica se temos o endereço da conta
-      if (!account) {
-        console.log('Dashboard: Aguardando endereço da carteira ser atualizado...');
-        
-        // Usa o método auxiliar para garantir que a conta esteja disponível
-        const walletAddress = await ensureAccountAvailable(5, 500);
-        
-        if (!walletAddress) {
-          showError('Erro ao obter endereço da carteira. Tente novamente.');
-          setLoading(false);
-          return;
-        }
-        
-        console.log('Dashboard: Endereço da carteira obtido com sucesso:', walletAddress);
-      }
-            
-      // Se já está autenticado, para o loading
-      if (isAuthenticated) {
-        console.log('Dashboard: Usuário já autenticado');
-        setLoading(false);
-        return;
-      }
-      
-      // Aguarda um pouco antes de prosseguir
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Após conectar com sucesso, verifica se o usuário está cadastrado
-      await checkIfUserRegistered();
-    } catch (error) {
-      console.error("Dashboard: Erro ao conectar carteira:", error);
-      showError(t('app:errors.walletError'));
-      setLoading(false);
     }
   };
 
@@ -550,26 +358,11 @@ export default function DashboardPage() {
               </p>
               
               {/* Call to Action */}
-              <div className="mb-12 flex justify-center">
-                {loading || signing || networkLoading ? (
-                  <Button 
-                    size="lg" 
-                    disabled
-                    className="bg-primary/50 text-black font-semibold px-8 py-4 rounded-lg flex items-center gap-2 min-w-[280px] justify-center"
-                  >
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    {loading ? t('app:loading.general') : signing ? t('app:loading.signature') : networkLoading ? t('app:loading.network') : ''}
-                  </Button>
-                ) : (
-                  <Button 
-                    size="lg" 
-                    onClick={handleConnectWallet}
-                    className="bg-primary hover:bg-primary/90 text-black font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 flex items-center gap-2 min-w-[280px] justify-center"
-                  >
-                    <Wallet size={20} />
-                    {t('dashboard.welcome.cta')}
-                  </Button>
-                )}
+              <div className="mb-12">
+                <LoginHandler 
+                  showAsButton={true}
+                  buttonLabel={t('dashboard.welcome.cta')}
+                />
               </div>
               
               {/* Features Grid Minimalista */}

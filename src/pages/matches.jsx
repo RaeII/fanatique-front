@@ -39,7 +39,7 @@ export default function MatchesPage() {
         await checkHeartClubMatch(heartClub.id);
       } catch (error) {
         console.error('Error fetching matches:', error);
-        showError(t('matches.errors.failedToLoad', 'Failed to load matches'));
+        showError(t('matches.errors.failedToLoad'));
       } finally {
         setLoading(false);
       }
@@ -95,6 +95,7 @@ export default function MatchesPage() {
       }
     } catch (error) {
       console.error('Erro ao verificar partida do clube do coração:', error);
+      showError(t('matches.errors.heartClubMatchError'));
       setHeartClubMatch(null);
       setMatches({
         upcoming: [],
@@ -108,7 +109,7 @@ export default function MatchesPage() {
       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
         <div className="flex flex-col items-center">
           <Loader2 className="h-12 w-12 animate-spin text-secondary" />
-          <p className="mt-4 text-primary/70 dark:text-white/70">{t('matches.loading', 'Loading matches...')}</p>
+          <p className="mt-4 text-primary/70 dark:text-white/70">{t('matches.loading')}</p>
         </div>
       </div>
     );
@@ -118,12 +119,12 @@ export default function MatchesPage() {
     return (
       <div className="min-h-[calc(100vh-4rem)] bg-[#fafafa] dark:bg-[#0d0117] flex flex-col items-center justify-center p-4">
         <Trophy size={64} className="text-primary/30 dark:text-white/30 mb-4" />
-        <h1 className="text-xl font-bold text-primary dark:text-white mb-2">{t('matches.noHeartClub.title', 'No Heart Club Selected')}</h1>
+        <h1 className="text-xl font-bold text-primary dark:text-white mb-2">{t('matches.noHeartClub.title')}</h1>
         <p className="text-center text-primary/70 dark:text-white/70 mb-6">
-          {t('matches.noHeartClub.description', 'You need to select a heart club to view matches.')}
+          {t('matches.noHeartClub.description')}
         </p>
         <Button onClick={() => navigate('/dashboard')}>
-          {t('matches.noHeartClub.goToDashboard', 'Go to Dashboard')}
+          {t('matches.noHeartClub.goToDashboard')}
         </Button>
       </div>
     );
@@ -134,7 +135,7 @@ export default function MatchesPage() {
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center mb-6">
           <h1 className="text-2xl font-bold text-primary dark:text-white">
-            {t('matches.title', '{{clubName}} Matches', { clubName: heartClub.name })}
+            {t('matches.title', { clubName: heartClub.name })}
           </h1>
         </div>
 
@@ -142,7 +143,7 @@ export default function MatchesPage() {
         {/* Partida do clube do coração (se existir) */}
         {heartClubMatch && (
           <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4">{t('matches.liveMatch', 'Partida Atual')}</h2>
+            <h2 className="text-xl font-semibold mb-4 text-primary dark:text-white">{t('matches.liveMatch')}</h2>
             <MatchCard 
               match={heartClubMatch}
               club={heartClub}

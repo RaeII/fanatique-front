@@ -6,7 +6,7 @@ import { Loader2, Wallet } from 'lucide-react';
 import { showError, showSuccess } from '../lib/toast';
 import { useTranslation } from 'react-i18next';
 
-export function LoginHandler({ onLoginSuccess, showAsButton = true }) {
+export function LoginHandler({ onLoginSuccess, showAsButton = true, buttonLabel }) {
   const { t } = useTranslation(['app', 'common']);
   const {
     account,
@@ -223,7 +223,7 @@ export function LoginHandler({ onLoginSuccess, showAsButton = true }) {
   // Se está carregando, mostra loader
   if (loading || signing || networkLoading) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2 mx-auto">
         <Loader2 className="h-4 w-4 animate-spin text-secondary" />
         <span className="text-sm text-primary/70 dark:text-white/70">
           {loading ? t('app:loading.general') : signing ? t('app:loading.signature') : networkLoading ? t('app:loading.network') : ''}
@@ -234,6 +234,9 @@ export function LoginHandler({ onLoginSuccess, showAsButton = true }) {
 
   // Se usado como botão no header
   if (showAsButton) {
+    // Estilo personalizado para botão do dashboard
+    const isDashboardButton = buttonLabel && buttonLabel !== t('app:welcome.connectButton');
+    
     return (
       <button
         onClick={(e) => {
@@ -242,10 +245,13 @@ export function LoginHandler({ onLoginSuccess, showAsButton = true }) {
           handleConnectWallet();
         }}
         disabled={loading || signing || networkLoading}
-        className="bg-primary text-black px-4 py-2 rounded-md flex items-center gap-2 hover:bg-primary/90 disabled:opacity-50"
+        className={isDashboardButton 
+          ? "bg-primary hover:bg-primary/90 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 disabled:opacity-50 mx-auto"
+          : "bg-primary text-black px-4 py-2 rounded-md flex items-center gap-2 hover:bg-primary/90 disabled:opacity-50"
+        }
       >
         <Wallet size={16} />
-        {t('app:welcome.connectButton')}
+        {buttonLabel || t('app:welcome.connectButton')}
       </button>
     );
   }
