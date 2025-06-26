@@ -1,0 +1,81 @@
+{
+  "forum": {
+    "loading": "Carregando fórum...",
+    "noAccess": "Você precisa seguir este clube para acessar o fórum",
+    "error": "Falha ao carregar dados do fórum",
+    "loadPostsError": "Falha ao carregar postagens",
+    "createPostError": "Falha ao criar postagem",
+    "likePostError": "Falha ao curtir postagem",
+    "createSuccess": "Postagem criada com sucesso"
+  },
+  "tabs": {
+    "latest": "Recentes",
+    "trending": "Alta",
+    "mine": "Minhas Discussões"
+  },
+  "categories": {
+    "all": "Todos",
+    "trending": "Alta",
+    "hot": "Populares",
+    "match": "Partidas",
+    "general": "Geral"
+  },
+  "sidebar": {
+    "notifications": "Notificações",
+    "bookmarks": "Favoritos",
+    "newPost": "Nova Postagem"
+  },
+  "createPost": {
+    "prompt": "O que está acontecendo?",
+    "title": "Título",
+    "categories": {
+      "title": "Categorias",
+      "general": "Geral"
+    },
+    "cancel": "Cancelar",
+    "post": "Publicar",
+    "posting": "Publicando..."
+  },
+  "emptyState": {
+    "noResults": {
+      "title": "Nenhuma postagem corresponde à sua busca",
+      "description": "Tente palavras-chave diferentes ou limpe sua busca",
+      "button": "Limpar Busca"
+    },
+    "noCategory": {
+      "title": "Não há postagens nesta categoria",
+      "description": "Tente uma categoria diferente ou crie a primeira postagem",
+      "button": "Mostrar Todas as Postagens"
+    },
+    "noPosts": {
+      "title": "Ainda não há discussões",
+      "description": "Seja o primeiro a iniciar uma discussão!",
+      "button": "Criar Primeira Postagem"
+    }
+  },
+  "rightSidebar": {
+    "search": "Buscar discussões...",
+    "trending": "Em alta no clube",
+    "trendingTopics": [
+      "Resultado da última partida",
+      "Rumores de transferência",
+      "Planos para novo estádio",
+      "Evento de encontro de fãs"
+    ],
+    "trendingTopic": "Tópico em alta",
+    "posts": "postagens",
+    "whoToFollow": "Quem seguir",
+    "follow": "Seguir",
+    "stats": {
+      "activeUsers": "Usuários ativos",
+      "communitySince": "Comunidade desde",
+      "totalPosts": "Total de postagens",
+      "copyright": "© 2023 Fanatique. Todos os direitos reservados."
+    },
+    "clubInfo": {
+      "officialForum": "Fórum oficial do clube. Junte-se à conversa com outros fãs!",
+      "followers": "Seguidores",
+      "following": "Seguindo"
+    }
+  }
+} 

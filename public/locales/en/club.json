@@ -1,0 +1,64 @@
+{
+  "clubPage": {
+    "fans": "fans",
+    "stats": {
+      "points": "Points",
+      "quests": "Quests",
+      "orders": "Orders",
+      "tickets": "Tickets",
+      "accumulated": "accumulated points",
+      "completed": "completed",
+      "made": "made",
+      "purchased": "purchased"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "events": "Events",
+      "news": "News",
+      "quests": "Quests",
+      "forum": "Forum"
+    },
+    "actions": {
+      "heartClub": "Heart Club",
+      "follow": "Follow",
+      "following": "Following",
+      "backToClubs": "Back to Clubs",
+      "viewAll": "View All",
+      "viewDetails": "View Details",
+      "visitForum": "Visit Forum"
+    },
+    "sections": {
+      "upcomingEvents": "Upcoming Events",
+      "fanActivities": "Fan Activities",
+      "latestNews": "Latest News",
+      "allEvents": "All Events",
+      "allNews": "All News",
+      "clubQuests": "Club Quests"
+    },
+    "messages": {
+      "loadingClub": "Loading club data...",
+      "noUpcomingEvents": "No upcoming events for this club",
+      "noNewsAvailable": "No news available for this club",
+      "completeQuestsDescription": "Complete challenges and earn rewards",
+      "stadiumOrdersDescription": "Order food and drinks without waiting in line",
+      "questsDescription": "Complete quests to earn points and unlock rewards for your club.",
+      "eventsDescription": "View all upcoming events for",
+      "newsDescription": "Latest news and updates from",
+      "forumAvailable": "Club Forum Now Available!",
+      "joinConversation": "Join the conversation with other fans of"
+    },
+    "filters": {
+      "all": "All",
+      "available": "Available",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "sports": {
+      "showing": "Showing",
+      "contentFor": "content for"
+    },
+    "gameStatus": {
+      "live": "LIVE"
+    }
+  }
+} 

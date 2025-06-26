@@ -1,0 +1,42 @@
+{
+  "firstSteps": {
+    "title": "Primeiros Passos",
+    "description": "Complete sua primeira missão"
+  },
+  "clubExplorer": {
+    "title": "Explorador de Clubes",
+    "description": "Siga 3 clubes diferentes"
+  },
+  "questMaster": {
+    "title": "Mestre das Missões",
+    "description": "Complete 10 missões"
+  },
+  "ticketCollector": {
+    "title": "Colecionador de Ingressos",
+    "description": "Compre 5 ingressos para eventos"
+  },
+  "loyalFan": {
+    "title": "Fã Leal",
+    "description": "Siga o mesmo clube do coração por 30 dias"
+  },
+  "earlySupporter": {
+    "title": "Apoiador Inicial",
+    "description": "Seja um dos primeiros 1000 usuários a entrar na plataforma"
+  },
+  "pointHoarder": {
+    "title": "Acumulador de Pontos",
+    "description": "Acumule 10.000 pontos em todos os clubes"
+  },
+  "merchEnthusiast": {
+    "title": "Entusiasta de Produtos",
+    "description": "Compre 3 itens diferentes de merchandise"
+  },
+  "royalty": {
+    "title": "Realeza",
+    "description": "Alcance o nível mais alto de fã em qualquer clube"
+  },
+  "luckyWinner": {
+    "title": "Vencedor Sortudo",
+    "description": "Ganhe um sorteio ou concurso"
+  }
+} 

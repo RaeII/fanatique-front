@@ -1,0 +1,64 @@
+{
+  "clubPage": {
+    "fans": "fãs",
+    "stats": {
+      "points": "Pontos",
+      "quests": "Missões",
+      "orders": "Pedidos",
+      "tickets": "Ingressos",
+      "accumulated": "pontos acumulados",
+      "completed": "Missões",
+      "made": "realizados",
+      "purchased": "comprados"
+    },
+    "tabs": {
+      "overview": "Visão Geral",
+      "events": "Eventos",
+      "news": "Notícias",
+      "quests": "Missões",
+      "forum": "Fórum"
+    },
+    "actions": {
+      "heartClub": "Clube do Coração",
+      "follow": "Seguir",
+      "following": "Seguindo",
+      "backToClubs": "Voltar para Clubes",
+      "viewAll": "Ver Todos",
+      "viewDetails": "Ver Detalhes",
+      "visitForum": "Visitar Fórum"
+    },
+    "sections": {
+      "upcomingEvents": "Próximos Eventos",
+      "fanActivities": "Atividades do Torcedor",
+      "latestNews": "Últimas Notícias",
+      "allEvents": "Todos os Eventos",
+      "allNews": "Todas as Notícias",
+      "clubQuests": "Missões do Clube"
+    },
+    "messages": {
+      "loadingClub": "Carregando dados do clube...",
+      "noUpcomingEvents": "Nenhum evento próximo para este clube",
+      "noNewsAvailable": "Nenhuma notícia disponível para este clube",
+      "completeQuestsDescription": "Complete desafios e ganhe recompensas",
+      "stadiumOrdersDescription": "Peça comida e bebida sem esperar na fila",
+      "questsDescription": "Complete missões para ganhar pontos e desbloquear recompensas para seu clube.",
+      "eventsDescription": "Veja todos os próximos eventos de",
+      "newsDescription": "Últimas notícias e atualizações de",
+      "forumAvailable": "Fórum do Clube Agora Disponível!",
+      "joinConversation": "Participe da conversa com outros fãs de"
+    },
+    "filters": {
+      "all": "Todos",
+      "available": "Disponíveis",
+      "inProgress": "Em Andamento",
+      "completed": "Completados"
+    },
+    "sports": {
+      "showing": "Mostrando",
+      "contentFor": "conteúdo para"
+    },
+    "gameStatus": {
+      "live": "AO VIVO"
+    }
+  }
+} 

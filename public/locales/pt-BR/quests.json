@@ -1,0 +1,42 @@
+{
+  "quests": {
+    "generalQuests": "Missões Gerais",
+    "clubQuests": "Missões do Clube",
+    "description": "Complete missões para ganhar pontos e desbloquear recompensas para seu clube.",
+    "filters": {
+      "all": "Todas",
+      "available": "Disponíveis",
+      "inProgress": "Em Andamento",
+      "completed": "Concluídas"
+    },
+    "status": {
+      "available": "Disponível",
+      "inProgress": "Em Andamento",
+      "completed": "Concluída",
+      "locked": "Bloqueada"
+    },
+    "points": "pts",
+    "progress": "Progresso",
+    "requirements": "Requisitos",
+    "complete": "Completar",
+    "update": "Atualizar",
+    "loading": "Carregando",
+    "noQuests": "Nenhuma missão disponível nesta categoria"
+  },
+  "dailyLogin": {
+    "title": "Login Diário",
+    "description": "Faça login por 7 dias seguidos"
+  },
+  "matchPrediction": {
+    "title": "Previsão de Partida",
+    "description": "Preveja corretamente o resultado de uma partida"
+  },
+  "firstPurchase": {
+    "title": "Primeira Compra",
+    "description": "Faça sua primeira compra de merchandise"
+  },
+  "socialShare": {
+    "title": "Compartilhamento Social",
+    "description": "Compartilhe conteúdo do clube nas redes sociais"
+  }
+} 

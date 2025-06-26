@@ -1,0 +1,81 @@
+{
+  "forum": {
+    "loading": "Loading forum...",
+    "noAccess": "You need to follow this club to access the forum",
+    "error": "Failed to load forum data",
+    "loadPostsError": "Failed to load posts",
+    "createPostError": "Failed to create post",
+    "likePostError": "Failed to like post",
+    "createSuccess": "Post created successfully"
+  },
+  "tabs": {
+    "latest": "Latest",
+    "trending": "Trending",
+    "mine": "My Discussions"
+  },
+  "categories": {
+    "all": "All",
+    "trending": "Trending",
+    "hot": "Hot",
+    "match": "Match",
+    "general": "General"
+  },
+  "sidebar": {
+    "notifications": "Notifications",
+    "bookmarks": "Bookmarks",
+    "newPost": "New Post"
+  },
+  "createPost": {
+    "prompt": "What's happening?",
+    "title": "Title",
+    "categories": {
+      "title": "Categories",
+      "general": "General"
+    },
+    "cancel": "Cancel",
+    "post": "Post",
+    "posting": "Posting..."
+  },
+  "emptyState": {
+    "noResults": {
+      "title": "No posts match your search",
+      "description": "Try different keywords or clear your search",
+      "button": "Clear Search"
+    },
+    "noCategory": {
+      "title": "No posts in this category",
+      "description": "Try a different category or create the first post",
+      "button": "Show All Posts"
+    },
+    "noPosts": {
+      "title": "No discussions yet",
+      "description": "Be the first to start a discussion!",
+      "button": "Create First Post"
+    }
+  },
+  "rightSidebar": {
+    "search": "Search discussions...",
+    "trending": "Trending in the club",
+    "trendingTopics": [
+      "Latest match result",
+      "Transfer rumors",
+      "New stadium plans",
+      "Fan meetup event"
+    ],
+    "trendingTopic": "Trending topic",
+    "posts": "posts",
+    "whoToFollow": "Who to follow",
+    "follow": "Follow",
+    "stats": {
+      "activeUsers": "Active users",
+      "communitySince": "Community since",
+      "totalPosts": "Total posts",
+      "copyright": "© 2023 Fanatique. All rights reserved."
+    },
+    "clubInfo": {
+      "officialForum": "Official club forum. Join the conversation with fellow fans!",
+      "followers": "Followers",
+      "following": "Following"
+    }
+  }
+} 

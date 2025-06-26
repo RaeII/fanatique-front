@@ -1,0 +1,24 @@
+{
+  "game": {
+    "loading": "Loading game data...",
+    "back": "Back to Club",
+    "live": "LIVE",
+    "vs": "vs",
+    "liveMatch": "Live match in progress",
+    "orderFood": "Order Food & Drinks",
+    "matchStats": "Match Statistics",
+    "possession": "Possession",
+    "shots": "Shots",
+    "shotsOnTarget": "Shots on Target",
+    "corners": "Corners",
+    "fouls": "Fouls",
+    "matchTimeline": "Match Timeline",
+    "secondHalf": "Second Half"
+  },
+  "questStatus": {
+    "available": "Available",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "locked": "Locked"
+  }
+} 

@@ -1,0 +1,38 @@
+{
+  "loading": {
+    "general": "Loading...",
+    "signature": "Validating signature...",
+    "network": "Verifying Chiliz network..."
+  },
+  "welcome": {
+    "title": "Welcome to Fanatique",
+    "loginCancelled": "Login Cancelled",
+    "description": "Connect your Chiliz wallet to enter the platform and enjoy a unique experience at stadiums.",
+    "connectButton": "Login MetaMask"
+  },
+  "register": {
+    "title": "Register on Fanatique",
+    "description": "You are connected with a new wallet! To continue, enter your username and sign the verification message.",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "usernameError": "Username must contain only letters, numbers and underscore (_)",
+    "cancelButton": "Cancel",
+    "registerButton": "Register",
+    "processingButton": "Processing"
+  },
+  "verification": {
+    "title": "Verifying registration...",
+    "continueButton": "Continue"
+  },
+  "errors": {
+    "usernameRequired": "Please enter your username",
+    "usernameInvalid": "Username must contain only letters, numbers and underscore (_)",
+    "registerError": "Error registering user",
+    "walletError": "Error connecting wallet",
+    "checkRegistrationError": "Error checking if user is registered",
+    "loginFailed": "Login failed"
+  },
+  "success": {
+    "registered": "Registration completed successfully!"
+  }
+} 

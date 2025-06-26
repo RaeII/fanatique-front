@@ -1,0 +1,38 @@
+{
+  "loading": {
+    "general": "Carregando...",
+    "signature": "Validando assinatura...",
+    "network": "Verificando rede Chiliz..."
+  },
+  "welcome": {
+    "title": "Bem-vindo a Fanatique",
+    "loginCancelled": "Login Cancelado",
+    "description": "Conecte sua carteira Chiliz para entrar na plataforma e aproveitar uma experiência única nos estádios.",
+    "connectButton": "Login MetaMask"
+  },
+  "register": {
+    "title": "Cadastre-se no Fanatique",
+    "description": "Você está conectado com uma carteira nova! Para continuar, digite seu nome de usuário e assine a mensagem de verificação.",
+    "username": "Nome de usuário",
+    "usernamePlaceholder": "Digite seu nome de usuário",
+    "usernameError": "Nome de usuário deve conter apenas letras, números e underscore (_)",
+    "cancelButton": "Cancelar",
+    "registerButton": "Cadastrar",
+    "processingButton": "Processando"
+  },
+  "verification": {
+    "title": "Verificando cadastro...",
+    "continueButton": "Continuar"
+  },
+  "errors": {
+    "usernameRequired": "Por favor, informe seu nome de usuário",
+    "usernameInvalid": "Nome de usuário deve conter apenas letras, números e underscore (_)",
+    "registerError": "Erro ao cadastrar usuário",
+    "walletError": "Erro ao conectar carteira",
+    "checkRegistrationError": "Erro ao verificar se o usuário está cadastrado",
+    "loginFailed": "Falha no login"
+  },
+  "success": {
+    "registered": "Cadastro realizado com sucesso!"
+  }
+} 

@@ -1,0 +1,31 @@
+{
+  "matches": {
+    "title": "Partidas do {{clubName}}",
+    "loading": "Carregando partidas...",
+    "tabs": {
+      "upcoming": "Próximas",
+      "past": "Anteriores"
+    },
+    "noUpcoming": "Nenhuma partida futura encontrada",
+    "noPast": "Nenhuma partida anterior encontrada",
+    "noHeartClub": {
+      "title": "Nenhum Clube do Coração Selecionado",
+      "description": "Você precisa selecionar um clube do coração para ver as partidas.",
+      "goToDashboard": "Ir para o Painel"
+    },
+    "errors": {
+      "failedToLoad": "Falha ao carregar partidas"
+    }
+  },
+  "matchCard": {
+    "liveNow": "Ao Vivo",
+    "completed": "Concluída",
+    "score": "Placar",
+    "stadium": "Estádio",
+    "clickToViewOdds": "Clique para ver as odds",
+    "buttons": {
+      "viewGame": "Ver Jogo",
+      "orderFood": "Pedir Comida & Bebidas"
+    }
+  }
+} 

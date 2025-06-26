@@ -1,0 +1,24 @@
+{
+  "game": {
+    "loading": "Carregando dados do jogo...",
+    "back": "Voltar para o Clube",
+    "live": "AO VIVO",
+    "vs": "vs",
+    "liveMatch": "Partida em andamento",
+    "orderFood": "Pedir Comida & Bebidas",
+    "matchStats": "Estatísticas da Partida",
+    "possession": "Posse de Bola",
+    "shots": "Finalizações",
+    "shotsOnTarget": "Finalizações no Gol",
+    "corners": "Escanteios",
+    "fouls": "Faltas",
+    "matchTimeline": "Linha do Tempo da Partida",
+    "secondHalf": "Segundo Tempo"
+  },
+  "questStatus": {
+    "available": "Disponível",
+    "inProgress": "Em Andamento",
+    "completed": "Concluída",
+    "locked": "Bloqueada"
+  }
+} 

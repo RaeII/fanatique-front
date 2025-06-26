@@ -1,0 +1,204 @@
+{
+  "app": {
+    "name": "Fanatique",
+    "tagline": "Interaja com seus clubes favoritos"
+  },
+  "navigation": {
+    "home": "Início",
+    "dashboard": "Painel",
+    "clubs": "Clubes",
+    "matches": "Partidas",
+    "orders": "Pedidos",
+    "profile": "Perfil",
+    "teams": "Diretório de Times",
+    "buyFantokens": "Comprar Fantokens"
+  },
+  "actions": {
+    "login": "Entrar",
+    "logout": "Sair",
+    "signup": "Cadastrar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "connect": "Conectar Carteira",
+    "disconnect": "Desconectar",
+    "saving": "Salvando",
+    "explore": "Explorar",
+    "viewAll": "Ver Todos",
+    "viewDetails": "Ver Detalhes",
+    "readMore": "Ler Mais",
+    "retry": "Tentar Novamente",
+    "saveChanges": "Salvar Alterações"
+  },
+  "dashboard": {
+    "yourClubs": "Seus Clubes",
+    "clubsDescription": "Clubes que você segue. Selecione um para ver detalhes, eventos e notícias.",
+    "noClubsFollowed": "Você ainda não segue nenhum clube",
+    "featuredClubs": "Clubes em Destaque",
+    "fans": "fãs",
+    "quickActions": "Ações Rápidas",
+    "placeOrder": "Fazer Pedido",
+    "orderDescription": "Peça comidas e bebidas sem pegar fila",
+    "orderNow": "Pedir Agora",
+    "completeQuests": "Completar Missões",
+    "questsDescription": "Ganhe pontos completando missões",
+    "viewQuests": "Ver Missões",
+    "myProfile": "Meu Perfil",
+    "profileDescription": "Veja e edite suas informações",
+    "viewProfile": "Ver Perfil",
+    "heartClubMatch": "Partida do seu Clube do Coração",
+    "leagues": {
+      "brasileirao": "Brasileirão",
+      "premier": "Premier",
+      "laliga": "LaLiga",
+      "bundesliga": "Bundesliga",
+      "frances": "Francês",
+      "argentino": "Argentino",
+      "mls": "MLS",
+      "portugues": "Português"
+    },
+    "banners": {
+      "stakeTokens": {
+        "title": "Stake Tokens",
+        "description": "Lucre enquanto você joga",
+        "action": "→ Começar Stake"
+      },
+      "buyTokens": {
+        "title": "Comprar Tokens",
+        "description": "Adquira Fan Tokens e Stablecoins",
+        "action": "→ Ver Tokens"
+      },
+      "cards": {
+        "title": "Suas Cartas",
+        "description": "Gerencie suas cartas especiais",
+        "action": "→ Ver Coleção"
+      },
+      "poker": {
+        "title": "Poker em breve",
+        "description": "Prepare-se para para nova forma de apostar"
+      }
+    },
+    "welcome": {
+      "title": "Bem-vindo ao",
+      "subtitle": "Gamifique seus staking de Fan Tokens com apostas estratégicas e recompensas exclusivas",
+      "cta": "Conectar Carteira & Começar",
+      "features": {
+        "stake": {
+          "title": "Stake Tokens",
+          "description": "Faça stake dos seus Fan Tokens e ganhe $CHIPS"
+        },
+        "bet": {
+          "title": "Aposte & Ganhe",
+          "description": "Use cartas especiais e aposte em suas odds favoritas"
+        },
+        "cards": {
+          "title": "Sistema de Cartas",
+          "description": "Colecione cartas únicas para potencializar suas apostas"
+        }
+      }
+    },
+    "benefits": {
+      "title": "Por que escolher a Fanatique?",
+      "subtitle": "A primeira plataforma de stake games integrada com Fan Tokens da Chiliz",
+      "items": {
+        "gamification": {
+          "title": "Gamificação com Cartas NFT",
+          "description": "Elementos táticos com cartas de buffs, defesa e modificação tornam cada aposta uma decisão estratégica."
+        },
+        "rewards": {
+          "title": "Recompensas reais e sistema de reputação",
+          "description": "Ganhe prêmios e destaque-se nos rankings através do sistema $REP."
+        },
+        "odds": {
+          "title": "Criação de Odds Personalizadas",
+          "description": "Torne-se criador e ganhe comissões com suas odds, usando uma estrutura prática."
+        },
+        "staking": {
+          "title": "Staking Ativo com Utilidade Real",
+          "description": "Transforme seus Fan Tokens em $CHIPS e use-os em um ecossistema dinâmico de apostas esportivas."
+        }
+      }
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "editProfile": "Editar Perfil",
+    "personalInfo": "Informações Pessoais",
+    "name": "Nome",
+    "email": "Email",
+    "wallet": "Endereço da Carteira",
+    "username": "Nome de Usuário",
+    "settings": "Configurações",
+    "darkMode": "Modo Escuro",
+    "language": "Idioma",
+    "notifications": "Notificações",
+    "points": "Pontos",
+    "earnedPoints": "pontos totais",
+    "completedQuests": "Missões",
+    "quests": "Missões",
+    "orders": "Pedidos",
+    "placedOrders": "realizados",
+    "tickets": "Ingressos",
+    "purchasedTickets": "comprados",
+    "featured": "Destacado",
+    "setAsFeatured": "Definir como Destacado",
+    "completed": "Concluído",
+    "achievement": "Conquista",
+    "quest": "Missão",
+    "achievements": "Conquistas",
+    "progress": "Progresso",
+    "overview": "Visão Geral",
+    "myClubs": "Meus Clubes",
+    "accountInfo": "Informações da Conta",
+    "registrationDate": "Data de Registro",
+    "lastUpdated": "Última Atualização",
+    "recentlyUnlocked": "Desbloqueados Recentemente",
+    "unlockedOn": "Desbloqueado em",
+    "noAchievementsYet": "Você ainda não desbloqueou nenhuma conquista",
+    "browseClubs": "Explorar Clubes",
+    "notFollowingClubs": "Você ainda não segue nenhum clube",
+    "followClubs": "Seguir Clubes",
+    "accountSettings": "Configurações da Conta",
+    "displayName": "Nome de Exibição",
+    "yourDisplayName": "Seu nome de exibição",
+    "yourName": "Seu nome",
+    "joined": "Registrado em",
+    "errorLoading": "Erro ao carregar perfil",
+    "notAvailable": "Perfil de usuário não disponível",
+    "all": "Todos",
+    "common": "Comum",
+    "uncommon": "Incomum",
+    "rare": "Raro",
+    "epic": "Épico",
+    "legendary": "Lendário"
+  },
+  "clubs": {
+    "description": "Explore clubes e torne-se um fã",
+    "joinClub": "Entrar no Clube",
+    "quests": "Missões",
+    "forum": "Fórum",
+    "manageClubs": "Gerenciar Clubes",
+    "selectHeartClub": "Selecionar Clube do Coração",
+    "heartClub": "Clube do Coração",
+    "noHeartClub": "Você ainda não selecionou um Clube do Coração"
+  },
+  "fantokens": {
+    "balance": "Saldo",
+    "buy": "Comprar Fantokens",
+    "send": "Enviar",
+    "receive": "Receber"
+  },
+  "orders": {
+    "myOrders": "Meus Pedidos",
+    "orderDetails": "Detalhes do Pedido",
+    "orderHistory": "Histórico de Pedidos",
+    "status": {
+      "pending": "Pendente",
+      "completed": "Concluído",
+      "cancelled": "Cancelado"
+    }
+  },
+  "common": {
+    "notAvailable": "N/D"
+  }
+} 

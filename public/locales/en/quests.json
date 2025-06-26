@@ -1,0 +1,42 @@
+{
+  "quests": {
+    "generalQuests": "General Quests",
+    "clubQuests": "Club Quests",
+    "description": "Complete quests to earn points and unlock rewards for your club.",
+    "filters": {
+      "all": "All",
+      "available": "Available",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "status": {
+      "available": "Available",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "locked": "Locked"
+    },
+    "points": "pts",
+    "progress": "Progress",
+    "requirements": "Requirements",
+    "complete": "Complete",
+    "update": "Update",
+    "loading": "Loading",
+    "noQuests": "No quests available in this category"
+  },
+  "dailyLogin": {
+    "title": "Daily Login",
+    "description": "Log in 7 days in a row"
+  },
+  "matchPrediction": {
+    "title": "Match Prediction",
+    "description": "Correctly predict the outcome of a match"
+  },
+  "firstPurchase": {
+    "title": "First Purchase",
+    "description": "Make your first merchandise purchase"
+  },
+  "socialShare": {
+    "title": "Social Share",
+    "description": "Share club content on social media"
+  }
+} 

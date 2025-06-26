@@ -1,0 +1,204 @@
+{
+  "app": {
+    "name": "Fanatique",
+    "tagline": "Engage with your favorite clubs"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "clubs": "Clubs",
+    "matches": "Matches",
+    "orders": "Orders",
+    "profile": "Profile",
+    "teams": "Teams Directory",
+    "buyFantokens": "Buy Fantokens"
+  },
+  "actions": {
+    "login": "Log in",
+    "logout": "Log out",
+    "signup": "Sign up",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "connect": "Connect Wallet",
+    "disconnect": "Disconnect",
+    "saving": "Saving",
+    "explore": "Explore",
+    "viewAll": "View All",
+    "viewDetails": "View Details",
+    "readMore": "Read More",
+    "retry": "Retry",
+    "saveChanges": "Save Changes"
+  },
+  "dashboard": {
+    "yourClubs": "Your Clubs",
+    "clubsDescription": "Clubs you follow. Select one to see details, events and news.",
+    "noClubsFollowed": "You don't follow any clubs yet",
+    "featuredClubs": "Featured Clubs",
+    "fans": "fans",
+    "quickActions": "Quick Actions",
+    "placeOrder": "Place Order",
+    "orderDescription": "Order food and drinks without waiting in line",
+    "orderNow": "Order Now",
+    "completeQuests": "Complete Quests",
+    "questsDescription": "Earn points by completing missions",
+    "viewQuests": "View Quests",
+    "myProfile": "My Profile",
+    "profileDescription": "View and edit your information",
+    "viewProfile": "View Profile",
+    "heartClubMatch": "Your Heart Club Match",
+    "leagues": {
+      "brasileirao": "Brasileirão",
+      "premier": "Premier",
+      "laliga": "LaLiga",
+      "bundesliga": "Bundesliga",
+      "frances": "French",
+      "argentino": "Argentinian",
+      "mls": "MLS",
+      "portugues": "Portuguese"
+    },
+    "banners": {
+      "stakeTokens": {
+        "title": "Stake Tokens",
+        "description": "Earn while you play",
+        "action": "→ Start Staking"
+      },
+      "buyTokens": {
+        "title": "Buy Tokens",
+        "description": "Acquire Fan Tokens and Stablecoins",
+        "action": "→ View Tokens"
+      },
+      "cards": {
+        "title": "Your Cards",
+        "description": "Manage your special cards",
+        "action": "→ View Collection"
+      },
+      "poker": {
+        "title": "Poker coming soon",
+        "description": "Get ready for a new way to bet"
+      }
+    },
+    "welcome": {
+      "title": "Welcome to",
+      "subtitle": "Gamify your Fan Token staking with strategic betting and exclusive rewards",
+      "cta": "Connect Wallet & Start",
+      "features": {
+        "stake": {
+          "title": "Stake Tokens",
+          "description": "Stake your Fan Tokens and earn $CHIPS"
+        },
+        "bet": {
+          "title": "Bet & Win",
+          "description": "Use special cards and bet on your favorite odds"
+        },
+        "cards": {
+          "title": "Card System",
+          "description": "Collect unique cards to boost your bets"
+        }
+      }
+    },
+    "benefits": {
+      "title": "Why choose Fanatique?",
+      "subtitle": "The first stake games platform integrated with Chiliz Fan Tokens",
+      "items": {
+        "gamification": {
+          "title": "NFT Card Gamification",
+          "description": "Tactical elements with buff, defense and modification cards make each bet a strategic decision."
+        },
+        "rewards": {
+          "title": "Real rewards and reputation system",
+          "description": "Earn prizes and stand out in rankings through the $REP system."
+        },
+        "odds": {
+          "title": "Custom Odds Creation",
+          "description": "Become a creator and earn commissions with your odds, using a practical structure."
+        },
+        "staking": {
+          "title": "Active Staking with Real Utility",
+          "description": "Transform your Fan Tokens into $CHIPS and use them in a dynamic sports betting ecosystem."
+        }
+      }
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "editProfile": "Edit Profile",
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "email": "Email",
+    "wallet": "Wallet Address",
+    "username": "Username",
+    "settings": "Settings",
+    "darkMode": "Dark Mode",
+    "language": "Language",
+    "notifications": "Notifications",
+    "points": "Points",
+    "earnedPoints": "total points",
+    "completedQuests": "Quests",
+    "quests": "completed",
+    "orders": "Orders",
+    "placedOrders": "made",
+    "tickets": "Tickets",
+    "purchasedTickets": "purchased",
+    "featured": "Featured",
+    "setAsFeatured": "Set as Featured",
+    "completed": "Completed",
+    "achievement": "Achievement",
+    "quest": "Quest",
+    "achievements": "Achievements",
+    "progress": "Progress",
+    "overview": "Overview",
+    "myClubs": "My Clubs",
+    "accountInfo": "Account Information",
+    "registrationDate": "Registration Date",
+    "lastUpdated": "Last Updated",
+    "recentlyUnlocked": "Recently Unlocked",
+    "unlockedOn": "Unlocked on",
+    "noAchievementsYet": "You haven't unlocked any achievements yet",
+    "browseClubs": "Browse Clubs",
+    "notFollowingClubs": "You're not following any clubs yet",
+    "followClubs": "Follow Clubs",
+    "accountSettings": "Account Settings",
+    "displayName": "Display Name",
+    "yourDisplayName": "Your display name",
+    "yourName": "Your name",
+    "joined": "Joined",
+    "errorLoading": "Error loading profile",
+    "notAvailable": "User profile not available",
+    "all": "All",
+    "common": "Common",
+    "uncommon": "Uncommon",
+    "rare": "Rare",
+    "epic": "Epic",
+    "legendary": "Legendary"
+  },
+  "clubs": {
+    "description": "Explore clubs and become a fan",
+    "joinClub": "Join Club",
+    "quests": "Quests",
+    "forum": "Forum",
+    "manageClubs": "Manage Clubs",
+    "selectHeartClub": "Select Heart Club",
+    "heartClub": "Heart Club",
+    "noHeartClub": "You haven't selected a Heart Club yet"
+  },
+  "fantokens": {
+    "balance": "Balance",
+    "buy": "Buy Fantokens",
+    "send": "Send",
+    "receive": "Receive"
+  },
+  "orders": {
+    "myOrders": "My Orders",
+    "orderDetails": "Order Details",
+    "orderHistory": "Order History",
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    }
+  },
+  "common": {
+    "notAvailable": "N/A"
+  }
+} 

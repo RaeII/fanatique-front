@@ -1,0 +1,31 @@
+{
+  "matches": {
+    "title": "{{clubName}} Matches",
+    "loading": "Loading matches...",
+    "tabs": {
+      "upcoming": "Upcoming",
+      "past": "Past"
+    },
+    "noUpcoming": "No upcoming matches found",
+    "noPast": "No past matches found",
+    "noHeartClub": {
+      "title": "No Heart Club Selected",
+      "description": "You need to select a heart club to view matches.",
+      "goToDashboard": "Go to Dashboard"
+    },
+    "errors": {
+      "failedToLoad": "Failed to load matches"
+    }
+  },
+  "matchCard": {
+    "liveNow": "Live Now",
+    "completed": "Completed",
+    "score": "Score",
+    "stadium": "Stadium",
+    "clickToViewOdds": "Click to view odds",
+    "buttons": {
+      "viewGame": "View Game",
+      "orderFood": "Order Food & Drinks"
+    }
+  }
+} 

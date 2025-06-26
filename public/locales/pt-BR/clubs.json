@@ -1,0 +1,11 @@
+{
+  "directory": {
+    "title": "Diretório de Clubes",
+    "description": "Explore todos os clubes disponíveis na plataforma.",
+    "loading": "Carregando...",
+    "searchPlaceholder": "Buscar clube...",
+    "fans": "fãs",
+    "noClubFound": "Nenhum clube encontrado com esse nome.",
+    "back": "Voltar"
+  }
+} 

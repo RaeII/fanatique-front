@@ -1,0 +1,90 @@
+{
+  "hero": {
+    "title": "Consume without queues, earn rewards and transform your stadium experience with",
+    "subtitle": "Transform your passion for football into a complete experience with blockchain, Fan Tokens, and exclusive benefits.",
+    "getStartedButton": "Get Started"
+  },
+  "quests": {
+    "title": "Available Quests",
+    "subtitle": "Earn rewards and Fan Tokens",
+    "examples": {
+      "stadium": "Check in at the stadium",
+      "share": "Share your experience",
+      "purchase": "Complete your first purchase"
+    }
+  },
+  "fanTokens": {
+    "title": "Fan Tokens",
+    "description": "Use your tokens for purchases and exclusive experiences!"
+  },
+  "features": {
+    "badge": "EXCLUSIVE FEATURES",
+    "title": "Transforming Your Fan Experience",
+    "subtitle": "Discover how Fanatique is revolutionizing the fan experience inside and outside stadiums.",
+    "items": {
+      "shopping": {
+        "title": "Smart Consumption",
+        "description": "Buy food and drinks without leaving your seat, using on-chain payment.",
+        "details": [
+          "On-chain payment",
+          "Seat delivery",
+          "Queue-less orders"
+        ]
+      },
+      "checkin": {
+        "title": "Check-in & History",
+        "description": "Register your presence and build your history as a loyal fan of your team.",
+        "details": [
+          "Automatic registration",
+          "Attendance history",
+          "Personal records"
+        ]
+      },
+      "quests": {
+        "title": "Gamified Quests",
+        "description": "Complete exclusive missions and earn valuable rewards and recognition.",
+        "details": [
+          "Exclusive missions",
+          "Special rewards",
+          "Fan ranking"
+        ]
+      },
+      "tokens": {
+        "title": "Fan Token Management",
+        "description": "Complete control of your Fan Tokens directly in the app, with blockchain security.",
+        "details": [
+          "Integrated wallet",
+          "Secure transactions",
+          "Easy token purchase"
+        ]
+      },
+      "vip": {
+        "title": "Fan Token Staking",
+        "description": "Earn rewards by staking your Fan Tokens",
+        "details": [
+          "Special benefits",
+          "Discounts on purchases",
+          "Advantageous staking rates"
+        ]
+      },
+      "community": {
+        "title": "Engaged Community",
+        "description": "Connect with other fans and enhance your social experience at games.",
+        "details": [
+          "Exclusive groups",
+          "Moment sharing",
+          "Group activities"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to transform your stadium experience?",
+    "description": "Join thousands of fans who are already enjoying all the benefits of Fanatique.",
+    "button": "Start Now"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "chiliz": "Developed for the Chiliz network"
+  }
+} 

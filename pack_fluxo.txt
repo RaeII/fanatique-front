@@ -1,0 +1,183 @@
+# FLUXO DO SISTEMA DE CARTAS - FANATIQUE
+
+## RESUMO
+Sistema que detecta novos usuários durante o login com MetaMask e distribui automaticamente 3 cartas de boas-vindas (1 lendária, 1 rara, 1 comum).
+
+**NOVA FUNCIONALIDADE**: Agora o sistema **SEMPRE** garante que o usuário tenha cartas disponíveis, mesmo se o cache for limpo ou estiver em outro dispositivo.
+
+## ARQUIVOS PRINCIPAIS
+
+### 1. /public/pack/card.js
+- Contém as definições das cartas em português (cardPT) e inglês (cardEN)
+- Cada carta tem: id, name, description, rarity, image_name
+- Raridades: "comum", "rara", "lendaria"
+- Imagens localizadas em /public/pack/
+
+### 2. /src/utils/cardSystem.js
+- Classe CardSystem que gerencia todo o sistema de cartas
+- Funções principais:
+  * getCardsByRarity() - filtra cartas por raridade
+  * getRandomCardByRarity() - seleciona carta aleatória de uma raridade
+  * generateNewUserPack() - gera pack de 3 cartas (1 lendária, 1 rara, 1 comum)
+  * saveUserCards() - salva cartas no localStorage
+  * getUserCards() - recupera cartas do usuário
+  * processNewUser() - função principal que processa novos usuários
+  * **ensureUserHasCards()** - **NOVA**: Garante que o usuário sempre tenha cartas
+
+### 3. /src/contexts/WalletContext.jsx
+- **MODIFICADO**: Agora SEMPRE verifica se o usuário tem cartas no cache local
+- Chama cardSystem.ensureUserHasCards() em dois momentos:
+  1. Durante o login (requestSignature)
+  2. Durante a autenticação automática (checkAuth)
+- Mostra o modal apenas quando são geradas novas cartas
+
+### 4. /src/components/CardPackModal.jsx
+- Modal que exibe as cartas recebidas
+- Navegação entre cartas com botões anterior/próxima
+- Visual diferenciado por raridade (cores)
+- Exibe imagem, nome, raridade e descrição de cada carta
+
+### 5. /src/hooks/useCardSystem.js
+- Hook que escuta o evento 'showWelcomeCards'
+- Gerencia estado do modal (aberto/fechado)
+- Fornece funções para acessar cartas do usuário
+
+### 6. /src/pages/app.jsx
+- Integra o hook useCardSystem
+- Renderiza o CardPackModal quando necessário
+
+## FLUXO COMPLETO ATUALIZADO
+
+### CENÁRIO 1: NOVO USUÁRIO
+1. **Login do Usuário**
+   - Usuário conecta MetaMask
+   - Backend retorna response.data.content.new_user = true
+
+2. **Detecção de Novo Usuário**
+   - WalletContext detecta new_user === true
+   - Chama cardSystem.ensureUserHasCards(walletAddress, 'pt')
+
+3. **Geração das Cartas**
+   - Sistema verifica se há cartas no cache (não há para novo usuário)
+   - Gera pack com 3 cartas e salva no localStorage
+   - Retorna { cards: [...], isNewCards: true }
+
+4. **Exibição das Cartas**
+   - Como new_user === true, mostra o modal
+   - Usuário vê suas cartas de boas-vindas
+
+### CENÁRIO 2: USUÁRIO EXISTENTE COM CACHE LIMPO/NOVO DISPOSITIVO
+1. **Login do Usuário**
+   - Usuário conecta MetaMask em novo dispositivo ou cache limpo
+   - Backend retorna response.data.content.new_user = false
+
+2. **Verificação de Cartas**
+   - WalletContext chama cardSystem.ensureUserHasCards(walletAddress, 'pt')
+   - Sistema verifica se há cartas no cache local (não há)
+
+3. **Geração de Novas Cartas**
+   - Como não há cartas no cache, gera novo pack
+   - Salva as cartas no localStorage
+   - Retorna { cards: [...], isNewCards: true }
+
+4. **Exibição das Cartas**
+   - Como isNewCards === true, mostra o modal
+   - Usuário recebe novas cartas e vê o modal
+
+### CENÁRIO 3: USUÁRIO EXISTENTE COM CARTAS NO CACHE
+1. **Login do Usuário**
+   - Usuário faz login normalmente
+   - Backend retorna response.data.content.new_user = false
+
+2. **Verificação de Cartas**
+   - WalletContext chama cardSystem.ensureUserHasCards(walletAddress, 'pt')
+   - Sistema encontra cartas existentes no cache
+
+3. **Cartas Existentes**
+   - Retorna { cards: [...], isNewCards: false }
+   - Modal NÃO é exibido (usuário já tem cartas)
+
+### CENÁRIO 4: USUÁRIO JÁ AUTENTICADO CARREGANDO A PÁGINA
+1. **Auto-Login**
+   - Página carrega com usuário já autenticado (token salvo)
+   - checkAuth() é executado automaticamente
+
+2. **Verificação de Cartas**
+   - Sistema chama cardSystem.ensureUserHasCards() automaticamente
+
+3. **Se Cache Limpo**
+   - Gera novas cartas e mostra modal automaticamente
+   - Usuário não perde suas cartas mesmo com cache limpo
+
+## ESTRUTURA DO CACHE
+
+```javascript
+{
+  "fanatique_user_cards": {
+    "0x1234...": {
+      "cards": [
+        {
+          "id": 5,
+          "name": "Sem Risco",
+          "description": "Se perder a aposta, você recebe 100% do valor de volta.",
+          "rarity": "lendaria",
+          "image_name": "sem_risco.png"
+        },
+        // ... outras cartas
+      ],
+      "lastUpdated": 1703123456789
+    }
+  },
+  "fanatique_cards_expiry": "1703123456789"
+}
+```
+
+## NOVA FUNÇÃO: ensureUserHasCards()
+
+```javascript
+ensureUserHasCards(walletAddress, language = 'pt') {
+  // Verifica se tem cartas no cache
+  const existingCards = this.getUserCards(walletAddress);
+  
+  if (existingCards && existingCards.cards && existingCards.cards.length > 0) {
+    // Tem cartas - retorna existentes
+    return {
+      cards: existingCards.cards,
+      isNewCards: false
+    };
+  }
+  
+  // Não tem cartas - gera novas
+  const newPack = this.generateNewUserPack(language);
+  this.saveUserCards(walletAddress, newPack);
+  
+  return {
+    cards: newPack,
+    isNewCards: true
+  };
+}
+```
+
+## CARTAS DISPONÍVEIS
+
+### Lendárias (2 cartas)
+- "Última Chance" - Pode alterar odds até o segundo tempo
+- "Sem Risco" - Retorna 100% do valor se perder
+
+### Raras (2 cartas)  
+- "Reconhecimento Extra" - Multiplica $REP por 1.5x
+- "Drible" - Preserva odd total se errar apenas 1 palpite em múltipla
+
+### Comuns (1 carta)
+- "Margem de Erro" - Permite errar por 1 unidade em over/under
+
+## VANTAGENS DA NOVA IMPLEMENTAÇÃO
+
+✅ **Nunca Perde Cartas**: Usuário sempre tem cartas disponíveis
+✅ **Multi-Dispositivo**: Funciona em qualquer dispositivo
+✅ **Cache Resiliente**: Não depende do cache do navegador
+✅ **UX Melhorada**: Modal só aparece quando necessário
+✅ **Compatibilidade**: Mantém toda funcionalidade anterior
+✅ **Logs Detalhados**: Fácil de debugar e monitorar
+
+

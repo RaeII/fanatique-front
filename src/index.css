@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --background-overlay: #fafafafa;
+    /* --text-adaptive: #434343; */
+    --text-adaptive: #28133a;
+    --tertiary: #ffffff;
+    --muted-foreground: 240 3.8% 46.1%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --backg: #ffffff;
+  }
+
+  .dark {
+    --primary: #C5F232;
+    --background: 300 3% 8%;
+    --foreground: 0 0% 98%;
+    --background-overlay: #1a1a1a;
+    --text-adaptive: #ffffff;
+    --tertiary: #242424;
+    --muted-foreground: 240 5% 64.9%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --backg: #0e0e0e;
+  }
+
+  body {
+    @apply bg-background text-primary transition-colors duration-300 min-h-screen;
+  }
+
+  .dark body {
+    @apply bg-background text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p, span {
+    @apply text-text-adaptive;
+  }
+
+}
+
+/* Adicione este código no final do arquivo para remover as setas do input numérico */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.imageBackground {
+  background-color: #1a1a1a; /* tom escuro de fundo */
+  background-image: linear-gradient(rgb(0 0 0 / 69%), rgb(14 14 14 / var(--tw-bg-opacity, 1))), url(banner-background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gradientBackground {
+  --tw-gradient-to: rgb(0 0 0 / 89%) var(--tw-gradient-to-position);
+  --tw-gradient-from: rgb(0 0 0 / 58%) var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.color-primary {
+  color: #000000;
+}
+
+.icon {
+  color: var(--primary);
+  background-color: #0e0e0e;
+
+}
+
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1px;
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animação para a ficha de poker */
+@keyframes chip-spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(720deg); }
+}
+
+.animate-chip-spin {
+  animation: chip-spin 1.5s ease-in-out;
+  transform-style: preserve-3d;
+}

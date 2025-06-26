@@ -1,0 +1,87 @@
+{
+  "title": {
+    "establishments": "Comidas & Bebidas do Estádio",
+    "menu": "Menu de Itens",
+    "cart": "Seu Pedido",
+    "confirmation": "Pedido Confirmado",
+    "activeOrders": "Meus Pedidos Ativos"
+  },
+  "button": {
+    "back": "Voltar",
+    "addToCart": "Adicionar",
+    "viewCart": "Ver Carrinho",
+    "backToMenu": "Voltar ao menu",
+    "placeOrder": "Fazer Pedido",
+    "viewOrders": "Ver Meus Pedidos",
+    "makeOrder": "Fazer um pedido",
+    "payNow": "Pagar Agora",
+    "confirmPayment": "Confirmar Pagamento",
+    "cancel": "Cancelar",
+    "buyBRZ": "Comprar BRZ",
+    "viewCart_items": "Ver Carrinho ({{count}} itens) - R$ {{total}}",
+    "returnToGame": "Voltar ao jogo",
+    "explore": "Explorar"
+  },
+  "status": {
+    "awaiting_payment": "Aguardando Pagamento",
+    "ready_for_pickup": "Pronto para Retirar",
+    "processing": "Processando",
+    "unknown": "Status Desconhecido"
+  },
+  "loading": "Carregando...",
+  "filter": {
+    "all": "Todos",
+    "awaiting_payment": "Aguardando Pagamento",
+    "ready_for_pickup": "Pronto para Retirar"
+  },
+  "selectEstablishment": "Selecione um estabelecimento",
+  "noEstablishments": "Nenhum estabelecimento disponível",
+  "noMenuItems": "Nenhum item de menu disponível",
+  "cartEmpty": "Seu carrinho está vazio",
+  "orderDetails": "Detalhes do Pedido",
+  "orderNumber": "Número do Pedido",
+  "establishment": "Estabelecimento",
+  "statusLabel": "Status",
+  "totalValue": "Valor Total",
+  "pickupLocation": "Local de Retirada",
+  "total": "Total",
+  "totalToPay": "Total a pagar",
+  "processing": "Processando...",
+  "noActiveOrders": "Você não tem pedidos ativos",
+  "noOrdersWithStatus": "Nenhum pedido encontrado com este status",
+  "activeOrdersCount": "Você tem {{count}} pedido ativo",
+  "activeOrdersCount_plural": "Você tem {{count}} pedidos ativos",
+  "tapToTrackOrders": "Toque para acompanhar seus pedidos",
+  "orderConfirmed": "Pedido Confirmado!",
+  "orderSuccessMessage": "Seu pedido #{{id}} foi realizado com sucesso e estará pronto para retirada em breve.",
+  "gameInfo": {
+    "title": "Informações do Jogo",
+    "stadium": "Estádio",
+    "currentScore": "Placar Atual",
+    "homeTeam": "Seu time está jogando em casa",
+    "awayTeam": "Seu time é o visitante"
+  },
+  "payment": {
+    "selectMethod": "Selecione o método de pagamento",
+    "instantPayment": "Pagamento instantâneo",
+    "creditCard": "Cartão de Crédito",
+    "availableCards": "Visa, Mastercard, etc.",
+    "stablecoin": "Stablecoin",
+    "stablecoinDesc": "Pague com criptomoedas estáveis",
+    "selectStablecoin": "Selecione a Stablecoin",
+    "availableStablecoins": "Stablecoins disponíveis",
+    "processingPayment": "Processando pagamento...",
+    "insufficient": {
+      "title": "Saldo Insuficiente",
+      "message": "Você não possui saldo suficiente de BRZ para completar este pagamento.",
+      "currentBalance": "Saldo atual",
+      "requiredAmount": "Valor necessário",
+      "advice": "Adquira mais BRZ para continuar com sua compra."
+    }
+  },
+  "counter": {
+    "estimatedTime": "Estimativa de preparo",
+    "noEstimatedTime": "sem tempo estimado",
+    "readyForPickup": "Seu pedido está pronto para retirada!"
+  }
+} 
