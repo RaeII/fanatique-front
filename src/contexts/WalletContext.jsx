@@ -258,7 +258,6 @@ export function WalletProvider({ children }) {
         }
       }
       
-      console.error('Erro ao garantir rede Chiliz:', error);
       return false;
     }
   }, [checkNetwork, switchNetwork, addNetwork]);
@@ -393,10 +392,8 @@ export function WalletProvider({ children }) {
           // SEMPRE verifica se o usuário tem cartas no cache local
           // Se não tiver (cache limpo, novo dispositivo, etc), gera novas cartas
           try {
-            console.log("Verificando cartas do usuário autenticado...");
             const userCardsResult = cardSystem.ensureUserHasCards(savedWallet);
             if (userCardsResult && userCardsResult.cards && userCardsResult.cards.length > 0) {
-              console.log('Cartas do usuário garantidas na autenticação:', userCardsResult.cards);
               
               // Se são cartas novas (cache limpo/novo dispositivo), mostra o modal
               if (userCardsResult.isNewCards) {
@@ -492,8 +489,6 @@ export function WalletProvider({ children }) {
           method: 'eth_requestAccounts' 
         });
 
-        console.log("\n\n WalletContext accounts", accounts[0],"\n\n");
-
       } catch (accountError) {
 
         if (accountError.code === 4001) {
@@ -510,7 +505,6 @@ export function WalletProvider({ children }) {
       }
             
       if (!accounts || accounts.length === 0) {
-        console.error("Nenhuma conta encontrada no MetaMask");
         showError('Nenhuma conta encontrada. Por favor, verifique o MetaMask.');
         setConnecting(false);
         return false;
@@ -527,7 +521,6 @@ export function WalletProvider({ children }) {
       
       // Verificar se o endereço foi realmente atualizado
       if (!address) {
-        console.log('WalletContext: Estado do endereço não foi atualizado imediatamente, forçando atualização');
         // Tenta forçar a atualização do estado novamente
         setAddress(accounts[0]);
         await delay(200);
@@ -571,7 +564,6 @@ export function WalletProvider({ children }) {
   // Função para desconectar a carteira
   const disconnectWallet = useCallback(async () => {
     try {
-      console.log('Desconectando carteira...');
       // No caso da MetaMask, não é possível desconectar programaticamente
       // Apenas limpamos nossa autenticação interna
       clearAuthCredentials();

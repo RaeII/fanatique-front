@@ -46,7 +46,7 @@ export default function HomeClubsPage() {
       try {
         // Only check authentication after wallet context is fully initialized
         if (isInitialized && !isAuthenticated) {
-          navigate('/app');
+          navigate('/');
           return;
         }
 

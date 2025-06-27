@@ -10,7 +10,7 @@ const isAuthenticated = () => {
 // Componente para rotas protegidas
 export function ProtectedRoute({ children }) {
   if (!isAuthenticated()) {
-    return <Navigate to="/app" replace />;
+    return <Navigate to="/" replace />;
   }
   return children;
 }

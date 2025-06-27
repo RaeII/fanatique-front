@@ -28,11 +28,11 @@ const CardSelectionModal = ({ isOpen, onClose, availableCards, onSelectCard, sel
   const getRarityText = (rarity) => {
     switch (rarity) {
       case 'comum':
-        return 'Comum';
+        return 'Common';
       case 'rara':
-        return 'Rara';
+        return 'Rare';
       case 'lendaria':
-        return 'Lendária';
+        return 'Legendary';
       default:
         return rarity;
     }
@@ -62,7 +62,7 @@ const CardSelectionModal = ({ isOpen, onClose, availableCards, onSelectCard, sel
         {/* Header - Minimalista */}
         <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-white">
-            Selecionar Carta
+            Select Card
           </h2>
           <button
             onClick={onClose}
@@ -78,10 +78,10 @@ const CardSelectionModal = ({ isOpen, onClose, availableCards, onSelectCard, sel
             <div className="text-center py-12">
               <Sparkles className="w-12 h-12 text-white/30 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-white mb-2">
-                Nenhuma carta disponível
+                No cards available
               </h3>
               <p className="text-white/60">
-                Você não possui cartas especiais no momento.
+                You don't have any special cards at the moment.
               </p>
             </div>
           ) : (
@@ -192,14 +192,14 @@ const CardSelectionModal = ({ isOpen, onClose, availableCards, onSelectCard, sel
                 variant="outline"
                 className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
               >
-                Remover Todas ({selectedCards.length})
+                Remove All ({selectedCards.length})
               </Button>
             )}
             <Button
               onClick={onClose}
               className="bg-gradient-to-r from-secondary to-primary hover:from-secondary/90 hover:to-primary/90 text-black"
             >
-              Concluir
+              Complete
             </Button>
           </div>
         </div>

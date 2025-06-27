@@ -90,11 +90,11 @@ const CardPackModal = ({ isOpen, onClose, cards = [] }) => {
   const getRarityText = (rarity) => {
     switch (rarity) {
       case 'comum':
-        return 'Comum';
+        return 'Common';
       case 'rara':
-        return 'Rara';
+        return 'Rare';
       case 'lendaria':
-        return 'Lendária';
+        return 'Legendary';
       default:
         return rarity;
     }

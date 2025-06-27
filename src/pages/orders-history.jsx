@@ -30,7 +30,7 @@ export default function OrdersHistoryPage() {
     const checkAuthAndLoadData = async () => {
       try {
         if (isInitialized && !isAuthenticated) {
-          navigate('/app');
+          navigate('/');
           return;
         }
 

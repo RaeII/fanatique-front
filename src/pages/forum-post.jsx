@@ -27,7 +27,7 @@ export default function ForumPostPage() {
     const checkAccessAndLoadData = async () => {
       try {
         if (!isAuthenticated) {
-          navigate('/app');
+          navigate('/');
           return;
         }
         

@@ -55,7 +55,8 @@
       "betPlaced": "Bet placed successfully!",
       "cardAdded": "Card \"{{cardName}}\" added to bet!",
       "cardRemoved": "Card \"{{cardName}}\" removed from bet!",
-      "allCardsRemoved": "All cards removed from bet"
+      "allCardsRemoved": "All cards removed from bet",
+      "betReplaced": "Bet replaced in market \"{{marketName}}\""
     }
   }
 } 

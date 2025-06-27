@@ -28,7 +28,7 @@ export default function OrderDetailsPage() {
     const checkAuthAndLoadData = async () => {
       try {
         if (isInitialized && !isAuthenticated) {
-          navigate('/app');
+          navigate('/');
           return;
         }
 

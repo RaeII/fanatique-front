@@ -12,7 +12,7 @@ export default function HomePage() {
   const { t } = useTranslation(['home', 'common']);
 
   const handleGetStarted = () => {
-    navigate('/app');
+    navigate('/');
   };
 
   const { 

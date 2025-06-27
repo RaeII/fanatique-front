@@ -55,7 +55,8 @@
       "betPlaced": "Aposta realizada com sucesso!",
       "cardAdded": "Carta \"{{cardName}}\" adicionada à aposta!",
       "cardRemoved": "Carta \"{{cardName}}\" removida da aposta!",
-      "allCardsRemoved": "Todas as cartas removidas da aposta"
+      "allCardsRemoved": "Todas as cartas removidas da aposta",
+      "betReplaced": "Aposta substituída no mercado \"{{marketName}}\""
     }
   }
 } 

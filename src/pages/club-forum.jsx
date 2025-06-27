@@ -89,7 +89,7 @@ export default function ClubForumPage() {
     const checkAccessAndLoadData = async () => {
       try {
         if (isInitialized && !isAuthenticated) {
-          navigate('/app');
+          navigate('/');
           return;
         }
         

@@ -28,7 +28,7 @@ export default function CardsPage() {
     const checkAuthAndLoadCards = async () => {
       try {
         if (isInitialized && !isAuthenticated) {
-          navigate('/app');
+          navigate('/');
           return;
         }
 

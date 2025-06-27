@@ -303,12 +303,19 @@ export default function GamePage() {
       // Remove bet if already selected
       setSelectedBets(selectedBets.filter(bet => bet.id !== betId));
     } else {
+      // Check if there's already a bet from the same market
+      const existingMarketBet = selectedBets.find(bet => bet.marketId === marketId);
+      const isReplacingBet = !!existingMarketBet;
+      
+      // Remove any existing bet from the same market before adding new one
+      const betsWithoutSameMarket = selectedBets.filter(bet => bet.marketId !== marketId);
+      
       // Add new bet
       const market = bettingMarkets.find(m => m.id === marketId);
       const option = market?.options?.find(o => o.id === optionId);
       
       if (market && option) {
-        setSelectedBets([...selectedBets, {
+        setSelectedBets([...betsWithoutSameMarket, {
           id: betId,
           match_id: parseInt(gameId), // Adicionar o ID da partida
           market_id: marketId, // Renomeado para corresponder ao formato esperado pela API
@@ -319,6 +326,11 @@ export default function GamePage() {
           description: option.description || option.label,
           odd: 2.0 // Valor padrão já que a API não retorna odds ainda
         }]);
+
+        // Show feedback message if replacing an existing bet
+        if (isReplacingBet) {
+          showSuccess(t('game:betting.success.betReplaced', { marketName: market.name }));
+        }
       }
     }
   };
