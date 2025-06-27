@@ -62,7 +62,7 @@ export default function CardsPage() {
   }, [isAuthenticated, isInitialized, account, navigate]);
 
   const handleBackToDashboard = () => {
-    navigate('/dashboard');
+    navigate('/');
   };
 
 

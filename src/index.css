@@ -133,3 +133,16 @@ input[type="number"] {
   animation: chip-spin 1.5s ease-in-out;
   transform-style: preserve-3d;
 }
+
+/* Animações para o loading do baú do tesouro */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-reverse {
+  animation-direction: reverse;
+}

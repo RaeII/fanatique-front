@@ -5,14 +5,37 @@ import { AnimationMixer, Clock, Vector3 } from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 
+// Componente de Loading
+function LoadingSpinner() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-50">
+      <div className="flex flex-col items-center">
+        <div className="relative">
+          {/* Spinner principal */}
+          <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin"></div>
+          {/* Spinner interno */}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 // Componente do baú 3D
-function TreasureChest({ isOpening, onAnimationComplete }) {
+function TreasureChest({ isOpening, onAnimationComplete, onLoad }) {
   const meshRef = useRef();
   const mixerRef = useRef();
   const clockRef = useRef(new Clock());
   
   // Carrega o modelo GLB
   const gltf = useLoader(GLTFLoader, '/treasure_chest_animation.glb');
+  
+  useEffect(() => {
+    // Notifica que o modelo foi carregado
+    if (onLoad) {
+      onLoad();
+    }
+  }, [gltf, onLoad]);
   
   useEffect(() => {
     if (gltf.animations && gltf.animations.length > 0) {
@@ -114,11 +137,13 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
   const [isOpening, setIsOpening] = useState(false);
   const [showCoins, setShowCoins] = useState(false);
   const [showRewards, setShowRewards] = useState(false);
-
-
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (show) {
+      // Reset do loading quando a animação é mostrada
+      setIsLoading(true);
+      
       // Inicia a animação de abertura após um pequeno delay
       const timer = setTimeout(() => {
         setIsOpening(true);
@@ -130,8 +155,14 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
       setIsOpening(false);
       setShowCoins(false);
       setShowRewards(false);
+      setIsLoading(true);
     }
   }, [show]);
+
+  const handleModelLoad = () => {
+    // Remove o loading quando o modelo 3D carregar
+    setIsLoading(false);
+  };
 
   const handleAnimationComplete = () => {
     setShowCoins(true);
@@ -144,6 +175,9 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
+      {/* Loading Spinner */}
+      {isLoading && <LoadingSpinner />}
+      
       <div className="relative w-full h-full">
         {/* Canvas 3D */}
         <Canvas
@@ -210,6 +244,7 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
             <TreasureChest 
               isOpening={isOpening}
               onAnimationComplete={handleAnimationComplete}
+              onLoad={handleModelLoad}
             />
             
             {/* Moedas voadores */}
@@ -375,13 +410,15 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
           )}
         </AnimatePresence>
 
-        {/* Botão de fechar melhorado */}
-        <button
-          onClick={onClose}
-          className="absolute top-12 right-12  text-white text-4xl font-bold z-20 transition-all duration-200 pointer-events-auto w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 border-2 border-white/20 hover:border-white/40"
-        >
-          ×
-        </button>
+        {/* Botão de fechar melhorado - só aparece quando a animação terminar */}
+        {showRewards && (
+          <button
+            onClick={onClose}
+            className="absolute top-12 right-12  text-white text-4xl font-bold z-20 transition-all duration-200 pointer-events-auto w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 border-2 border-white/20 hover:border-white/40"
+          >
+            ×
+          </button>
+        )}
       </div>
     </div>
   );
