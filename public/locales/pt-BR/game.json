@@ -57,6 +57,14 @@
       "cardRemoved": "Carta \"{{cardName}}\" removida da aposta!",
       "allCardsRemoved": "Todas as cartas removidas da aposta",
       "betReplaced": "Aposta substituída no mercado \"{{marketName}}\""
+    },
+    "betCompleted": {
+      "title": "Aposta Realizada!",
+      "subtitle": "Verifique em Minhas Apostas",
+      "amount": "Valor:",
+      "totalOdds": "Odd Total:",
+      "possibleReturn": "Retorno Possível:",
+      "viewMyBets": "Ver Minhas Apostas"
     }
   }
 } 

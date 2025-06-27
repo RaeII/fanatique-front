@@ -244,7 +244,7 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
               >
                 <div className="text-center">
                   <div className="text-2xl font-bold text-white mb-6">
-                   Prêmios de primeiro acesso:
+                   First access rewards:
                   </div>
                   
                   {cards && cards.length > 0 ? (
@@ -252,7 +252,7 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
                       {/* Descrição dos prêmios */}
                       <div className="text-center text-white">
                         <div className="text-3xl font-bold drop-shadow-lg">+100 $CHIPS</div>
-                        <div className="text-xl font-bold">+ {cards.length} carta{cards.length > 1 ? 's' : ''} especial{cards.length > 1 ? 'is' : ''}</div>
+                        <div className="text-xl font-bold">+ {cards.length} special card{cards.length > 1 ? 's' : ''}</div>
                       </div>
 
                       {/* Container das imagens lado a lado */}
@@ -355,8 +355,8 @@ export default function TreasureChestAnimation({ show, onClose, cards = [] }) {
                       {/* Descrição do prêmio */}
                       <div className="text-center text-white space-y-4">
                         <div className="text-4xl font-bold drop-shadow-lg">+100 $CHIPS</div>
-                        <div className="text-lg opacity-90 font-medium">Token de utilidade da Fanatique</div>
-                        <p className="text-white/80 text-sm max-w-md">🎉 Parabéns! Você ganhou tokens $CHIPS para usar na Fanatique!</p>
+                        <div className="text-lg opacity-90 font-medium">Fanatique utility token</div>
+                        <p className="text-white/80 text-sm max-w-md">🎉 Congratulations! You earned $CHIPS tokens to use on Fanatique!</p>
                       </div>
                       
                       {/* Imagem dos CHIPS */}

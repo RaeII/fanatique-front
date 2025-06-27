@@ -16,7 +16,9 @@ import {
   Sparkles,
   Shield,
   Target,
-  Navigation
+  Navigation,
+  Eye,
+  ChevronRight
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { showError, showSuccess } from '../lib/toast';
@@ -36,7 +38,7 @@ export default function GamePage() {
   const [gameInfo, setGameInfo] = useState(null);
   const [selectedBets, setSelectedBets] = useState([]);
   const [bettingMarkets, setBettingMarkets] = useState([]);
-  const [betAmount, setBetAmount] = useState(null);
+  const [betAmount, setBetAmount] = useState('');
   const [isPlacingBet, setIsPlacingBet] = useState(false);
   
   // Estados para drag do cupom
@@ -53,6 +55,10 @@ export default function GamePage() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const [cardAnimation, setCardAnimation] = useState(false);
+
+  // Estado para indicador de aposta finalizada
+  const [showBetCompletedIndicator, setShowBetCompletedIndicator] = useState(false);
+  const [lastBetData, setLastBetData] = useState(null);
 
   const { t } = useTranslation(['game', 'common']);
 
@@ -141,7 +147,7 @@ export default function GamePage() {
       return;
     }
     
-    if (!betAmount || betAmount <= 0) {
+    if (!betAmount || Number(betAmount) <= 0) {
       showError(t('game:betting.errors.enterValidAmount'));
       return;
     }
@@ -149,7 +155,7 @@ export default function GamePage() {
     // Verificar o saldo será feito no backend agora
     
     const totalOdds = calculateOdds(selectedBets);
-    const potentialPayout = calculatePayout(betAmount, totalOdds);
+    const potentialPayout = calculatePayout(Number(betAmount), totalOdds);
     
     // Verificar se todos os selectedBets têm match_id
     if (selectedBets.some(bet => !bet.match_id)) {
@@ -158,7 +164,7 @@ export default function GamePage() {
     }
     
     let betData = {
-      bet_amount: betAmount, // Corrigido para bet_amount conforme esperado pelo backend
+      bet_amount: Number(betAmount), // Corrigido para bet_amount conforme esperado pelo backend
       total_odds: totalOdds, // Corrigido para total_odds conforme esperado pelo backend
       potential_payout: potentialPayout,
       match_id: parseInt(gameId), // Adicionar o ID da partida explicitamente
@@ -189,8 +195,22 @@ export default function GamePage() {
       
       // Limpar seleção
       setSelectedBets([]);
-      setBetAmount(null);
+      setBetAmount('');
       setSelectedCards([]);
+      
+      // Mostrar indicador de aposta finalizada
+      setLastBetData({
+        amount: Number(betAmount),
+        odds: totalOdds,
+        payout: potentialPayout,
+        timestamp: new Date()
+      });
+      setShowBetCompletedIndicator(true);
+      
+      // Auto-hide o indicador após 10 segundos
+      setTimeout(() => {
+        setShowBetCompletedIndicator(false);
+      }, 10000);
       
       showSuccess(t('game:betting.success.betPlaced'));
     } catch (error) {
@@ -497,8 +517,59 @@ export default function GamePage() {
         </div>
       </div>
 
-      {/* Betting Markets */}
-      <div className="container mx-auto px-4 py-8">
+            {/* Betting Markets */}
+      <div className="container mx-auto px-4 py-8 relative">
+        {/* Indicador de Aposta Finalizada */}
+        {showBetCompletedIndicator && lastBetData && (
+          <div className="sticky top-4 z-50 mb-6 flex justify-end animate-in slide-in-from-right duration-500">
+            <div className="bg-gradient-to-r from-secondary to-primary rounded-xl shadow-2xl border border-white/20 backdrop-blur-md overflow-hidden max-w-sm">
+              <div className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center mr-3">
+                      <Check className="w-4 h-4 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-black font-bold text-sm">{t('game:betting.betCompleted.title')}</h3>
+                      <p className="text-black/70 text-xs">{t('game:betting.betCompleted.subtitle')}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowBetCompletedIndicator(false)}
+                    className="text-black/60 hover:text-black/80 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-black/70 text-xs">{t('game:betting.betCompleted.amount')}</span>
+                    <span className="text-black font-semibold text-xs">{lastBetData.amount} CHIPS</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-black/70 text-xs">{t('game:betting.betCompleted.totalOdds')}</span>
+                    <span className="text-black font-semibold text-xs">{lastBetData.odds.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-black/70 text-xs">{t('game:betting.betCompleted.possibleReturn')}</span>
+                    <span className="text-black font-bold text-xs">{lastBetData.payout.toFixed(2)} CHIPS</span>
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => navigate('/my-bets')}
+                  className="w-full bg-black/20 hover:bg-black/30 text-black font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center group"
+                >
+                  <Eye className="w-4 h-4 mr-2" />
+                  {t('game:betting.betCompleted.viewMyBets')}
+                  <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {bettingMarkets.length > 0 ? (
           <div className="space-y-8">
             {bettingMarkets.map((market) => (
@@ -761,7 +832,7 @@ export default function GamePage() {
                       <input
                         type="number"
                         value={betAmount}
-                        onChange={(e) => setBetAmount(Number(e.target.value))}
+                        onChange={(e) => setBetAmount(e.target.value)}
                         onMouseDown={(e) => e.stopPropagation()}
                         onTouchStart={(e) => e.stopPropagation()}
                         onClick={(e) => e.stopPropagation()}
@@ -784,7 +855,7 @@ export default function GamePage() {
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs text-white/60">{t('game:betting.possibleReturn')}:</span>
                     <span className="text-sm font-bold text-primary">
-                      {calculatePayout(betAmount, calculateOdds(selectedBets)).toFixed(2)} CHIPS
+                      {calculatePayout(Number(betAmount), calculateOdds(selectedBets)).toFixed(2)} CHIPS
                     </span>
                   </div>
                   
@@ -805,7 +876,7 @@ export default function GamePage() {
                   
                   <Button 
                     onClick={handlePlaceBet}
-                    disabled={isPlacingBet || selectedBets.length === 0 || !betAmount || betAmount <= 0}
+                    disabled={isPlacingBet || selectedBets.length === 0 || !betAmount || Number(betAmount) <= 0}
                     className="w-full bg-gradient-to-r from-secondary to-primary hover:from-secondary/90 hover:to-primary/90 disabled:from-white/20 disabled:to-white/20 text-black font-semibold text-sm py-3 mb-3 rounded-lg transition-all duration-300"
                   >
                     {isPlacingBet ? (
@@ -813,7 +884,7 @@ export default function GamePage() {
                     ) : (
                       <Check className="mr-2 h-4 w-4" />
                     )}
-                    {betAmount ? t('game:betting.placeBetWithAmount', { amount: betAmount }) : t('game:betting.placeBet')}
+                    {betAmount ? t('game:betting.placeBetWithAmount', { amount: Number(betAmount) }) : t('game:betting.placeBet')}
                   </Button>
                   
                   {/* Indicador visual de movimento */}

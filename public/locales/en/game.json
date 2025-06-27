@@ -57,6 +57,14 @@
       "cardRemoved": "Card \"{{cardName}}\" removed from bet!",
       "allCardsRemoved": "All cards removed from bet",
       "betReplaced": "Bet replaced in market \"{{marketName}}\""
+    },
+    "betCompleted": {
+      "title": "Bet Placed!",
+      "subtitle": "Check in My Bets",
+      "amount": "Amount:",
+      "totalOdds": "Total Odds:",
+      "possibleReturn": "Possible Return:",
+      "viewMyBets": "View My Bets"
     }
   }
 } 

@@ -123,7 +123,7 @@ export default function MatchesPage() {
         <p className="text-center text-primary/70 dark:text-white/70 mb-6">
           {t('matches.noHeartClub.description')}
         </p>
-        <Button onClick={() => navigate('/dashboard')}>
+        <Button onClick={() => navigate('/')}>
           {t('matches.noHeartClub.goToDashboard')}
         </Button>
       </div>

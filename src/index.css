@@ -75,7 +75,7 @@ input[type="number"] {
 
 .imageBackground {
   background-color: #1a1a1a; /* tom escuro de fundo */
-  background-image: linear-gradient(rgb(0 0 0 / 69%), rgb(14 14 14 / var(--tw-bg-opacity, 1))), url(banner-background.png);
+  background-image: linear-gradient(rgb(0 0 0 / 69%), rgb(14 14 14 / var(--tw-bg-opacity, 1))), url(/banner-background.png);
   background-repeat: no-repeat;
   background-size: cover;
 }

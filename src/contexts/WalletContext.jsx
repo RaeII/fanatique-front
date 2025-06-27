@@ -23,14 +23,14 @@ let lastNetworkCheck = 0;
 // Função auxiliar para verificar e trocar para a rede Chiliz
 const verifyAndSwitchNetwork = async () => {
   try {
-    if (!window.ethereum) return { success: false, message: 'MetaMask não encontrada' };
+    if (!window.ethereum) return { success: false, message: 'MetaMask not found' };
     
     // Verifica a rede atual
     const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
     const formattedChilizChainId = formatChainId(NETWORK_ID_CHILIZ);
     
     if (currentChainId === formattedChilizChainId) {
-      return { success: true, message: 'Já está na rede Chiliz' };
+      return { success: true, message: 'Already on Chiliz network' };
     }
     
     // Tenta trocar para a rede Chiliz
@@ -39,7 +39,7 @@ const verifyAndSwitchNetwork = async () => {
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: formattedChilizChainId }],
       });
-      return { success: true, message: 'Rede trocada com sucesso' };
+      return { success: true, message: 'Network switched successfully' };
     } catch (switchError) {
       // Rede não adicionada, tenta adicionar
       if (switchError.code === 4902) {
@@ -48,21 +48,21 @@ const verifyAndSwitchNetwork = async () => {
             method: 'wallet_addEthereumChain',
             params: [networkData]
           });
-          return { success: true, message: 'Rede Chiliz adicionada com sucesso' };
+          return { success: true, message: 'Chiliz network added successfully' };
         } catch (addError) {
           if (addError.code === 4001) {
-            return { success: false, message: 'Usuário rejeitou a adição da rede Chiliz' };
+            return { success: false, message: 'User rejected adding Chiliz network' };
           }
-          return { success: false, message: 'Erro ao adicionar rede Chiliz', error: addError };
+          return { success: false, message: 'Error adding Chiliz network', error: addError };
         }
       } else if (switchError.code === 4001) {
-        return { success: false, message: 'Usuário rejeitou a troca de rede' };
+        return { success: false, message: 'User rejected network switch' };
       }
-      return { success: false, message: 'Erro ao trocar para rede Chiliz', error: switchError };
+      return { success: false, message: 'Error switching to Chiliz network', error: switchError };
     }
   } catch (error) {
     console.error('Erro ao verificar/trocar rede:', error);
-    return { success: false, message: 'Erro ao verificar/trocar rede', error };
+    return { success: false, message: 'Error verifying/switching network', error };
   }
 };
 
@@ -176,11 +176,11 @@ export function WalletProvider({ children }) {
         return false;
       }
       if (error.code === 4001) {
-        showError('Você precisa trocar para a rede Chiliz para continuar');
+        showError('You need to switch to Chiliz network to continue');
         return false;
       }
       if (error.code === 4100) {
-        showError('Muitas requisições para a MetaMask. Por favor, aguarde alguns segundos e tente novamente.');
+        showError('Too many requests to MetaMask. Please wait a few seconds and try again.');
         return false;
       }
       console.error("Erro ao trocar de rede:", error);
@@ -204,7 +204,7 @@ export function WalletProvider({ children }) {
       
       const switched = await switchNetwork();
       if (switched) {
-        showSuccess("Rede Chiliz conectada com sucesso!");
+        showSuccess("Chiliz network connected successfully!");
         setIsChilizNetwork(true);
         return true;
       }
@@ -212,11 +212,11 @@ export function WalletProvider({ children }) {
       return false;
     } catch (error) {
       if (error.code === 4001) {
-        showError('Você precisa adicionar a rede Chiliz para continuar');
+        showError('You need to add Chiliz network to continue');
       } else if (error.code === 4100) {
-        showError('Muitas requisições para a MetaMask. Por favor, aguarde alguns segundos e tente novamente.');
+        showError('Too many requests to MetaMask. Please wait a few seconds and try again.');
       } else {
-        showError('Erro ao adicionar rede Chiliz. Por favor, tente novamente.');
+        showError('Error adding Chiliz network. Please try again.');
         console.error("Erro ao adicionar rede:", error);
       }
       return false;
@@ -249,7 +249,7 @@ export function WalletProvider({ children }) {
       if (error.code === 4100) {
         // Se for erro de spam, aguarde mais tempo e tente novamente
         await delay(3000);
-        showInfo('Aguardando para evitar bloqueio da MetaMask...');
+        showInfo('Waiting to avoid MetaMask blocking...');
         try {
           return await checkNetwork();
         } catch (e) {
@@ -334,7 +334,7 @@ export function WalletProvider({ children }) {
     
     if (chainId !== formattedChilizChainId) {
       setIsChilizNetwork(false);
-      showError("Troque para a rede Chiliz Spicy para continuar usando o aplicativo");
+      showError("Switch to Chiliz Spicy network to continue using the app");
       
       // Adiciona um pequeno delay antes de solicitar a troca de rede
       setTimeout(async () => {
@@ -345,11 +345,11 @@ export function WalletProvider({ children }) {
           console.error('Falha ao trocar para rede Chiliz:', result.message);
           // Se a troca falhou por um motivo que não seja usuário recusou, tenta adicionar a rede
           if (result.error && result.error.code !== 4001) {
-            showInfo('Tente adicionar a rede Chiliz manualmente em sua carteira');
+            showInfo('Try adding Chiliz network manually in your wallet');
           }
         } else {
           setIsChilizNetwork(true);
-          showSuccess("Rede Chiliz conectada com sucesso!");
+          showSuccess("Chiliz network connected successfully!");
         }
       }, 1500);
     } else {
@@ -460,7 +460,7 @@ export function WalletProvider({ children }) {
     
     if (!window.ethereum) {
       console.error("MetaMask não está instalado");
-      showError('MetaMask não está instalado. Por favor, instale a extensão MetaMask para continuar.');
+      showError('MetaMask is not installed. Please install MetaMask extension to continue.');
       window.open('https://metamask.io/download/', '_blank', 'noopener,noreferrer');
       return false;
     }
@@ -493,19 +493,19 @@ export function WalletProvider({ children }) {
 
         if (accountError.code === 4001) {
           // Usuário recusou a conexão
-          showError('Você recusou a conexão com a carteira');
+          showError('You refused the wallet connection');
         } else if (accountError.code === 4100) {
           // Erro de spam filter
-          showError('Muitas requisições para a MetaMask. Por favor, aguarde alguns segundos e tente novamente.');
+          showError('Too many requests to MetaMask. Please wait a few seconds and try again.');
         } else {
-          showError('Erro ao conectar com a carteira: ' + (accountError.message || 'Erro desconhecido'));
+          showError('Error connecting to wallet: ' + (accountError.message || 'Unknown error'));
         }
         setConnecting(false);
         return false;
       }
             
       if (!accounts || accounts.length === 0) {
-        showError('Nenhuma conta encontrada. Por favor, verifique o MetaMask.');
+        showError('No account found. Please check MetaMask.');
         setConnecting(false);
         return false;
       }
@@ -536,12 +536,12 @@ export function WalletProvider({ children }) {
       const networkResult = await verifyAndSwitchNetwork();
       if (networkResult.success) {
         setIsChilizNetwork(true);
-        if (networkResult.message !== 'Já está na rede Chiliz') {
-          showSuccess("Rede Chiliz conectada com sucesso!");
+        if (networkResult.message !== 'Already on Chiliz network') {
+          showSuccess("Chiliz network connected successfully!");
         }
       } else {
         setIsChilizNetwork(false);
-        showError(networkResult.message || "Falha ao conectar à rede Chiliz. Tente trocar manualmente.");
+        showError(networkResult.message || "Failed to connect to Chiliz network. Try switching manually.");
       }
       
       return true;
@@ -549,9 +549,9 @@ export function WalletProvider({ children }) {
       console.error("Erro detalhado ao conectar carteira:", err);
       
       if (err.code === 4100) {
-        showError('Muitas requisições para a MetaMask. Por favor, aguarde alguns segundos e tente novamente.');
+        showError('Too many requests to MetaMask. Please wait a few seconds and try again.');
       } else {
-        showError('Erro ao conectar com a carteira: ' + (err.message || 'Erro desconhecido'));
+        showError('Error connecting to wallet: ' + (err.message || 'Unknown error'));
       }
       
       return false;
@@ -621,12 +621,12 @@ export function WalletProvider({ children }) {
     
     if (!addressToUse) {
       console.log('WalletContext: requestSignature - Nenhum endereço disponível', address, walletAddress);
-      showError('Conecte primeiro sua carteira');
+      showError('Connect your wallet first');
       return false;
     }
     
     if (!checkIfMetaMaskAvailable()) {
-      showError('MetaMask não está instalado');
+      showError('MetaMask is not installed');
       return false;
     }
     
@@ -643,7 +643,7 @@ export function WalletProvider({ children }) {
       // Verifica e troca para a rede Chiliz automaticamente
       const networkResult = await verifyAndSwitchNetwork();
       if (!networkResult.success) {
-        showError(networkResult.message || 'Não foi possível conectar à rede Chiliz. Tente trocar manualmente.');
+        showError(networkResult.message || 'Could not connect to Chiliz network. Try switching manually.');
         setSigning(false);
         return false;
       }
@@ -658,7 +658,7 @@ export function WalletProvider({ children }) {
       const mensagem = `Validação de carteira no Fanatique: ${addressToUse}`;
       
       // Solicita assinatura ao usuário
-      showInfo('Por favor, assine a mensagem para entrar na plataforma');
+      showInfo('Please sign the message to enter the platform');
       
       // Solicita assinatura usando MetaMask diretamente
       let signature;
@@ -672,13 +672,13 @@ export function WalletProvider({ children }) {
         
         // Cancelamento pelo usuário
         if (signError.code === 4001) {
-          showError('Assinatura cancelada pelo usuário. É necessário assinar para entrar na plataforma.');
+          showError('Signature cancelled by user. Signing is required to enter the platform.');
           return { cancelled: true, success: false };
         } else if (signError.code === 4100) {
-          showError('Muitas requisições para a MetaMask. Por favor, aguarde alguns segundos e tente novamente.');
+          showError('Too many requests to MetaMask. Please wait a few seconds and try again.');
           return { spamBlocked: true, success: false };
         } else {
-          showError('Falha ao solicitar assinatura. Tente novamente mais tarde.');
+          showError('Failed to request signature. Try again later.');
         }
         
         return false;
@@ -734,27 +734,27 @@ export function WalletProvider({ children }) {
             console.error('Erro ao processar cartas do usuário:', error);
           }
           
-          showSuccess('Login realizado com sucesso!');
+          showSuccess('Login successful!');
           return true;
         } else {
-          showError('Autenticação falhou: Token não recebido');
+          showError('Authentication failed: Token not received');
           return false;
         }
       } else {
-        showError('Falha na validação: ' + (response.data.message || 'Erro desconhecido'));
+        showError('Validation failed: ' + (response.data.message || 'Unknown error'));
         return false;
       }
     } catch (err) {
       console.error('Erro ao validar carteira:', err);
       
       if (err.code === 4001) {
-        showError('Assinatura cancelada pelo usuário. É necessário assinar para entrar na plataforma.');
+        showError('Signature cancelled by user. Signing is required to enter the platform.');
         return { cancelled: true, success: false };
       } else if (err.code === 4100) {
-        showError('Muitas requisições para a MetaMask. Por favor, aguarde alguns segundos e tente novamente.');
+        showError('Too many requests to MetaMask. Please wait a few seconds and try again.');
         return { spamBlocked: true, success: false };
       } else {
-        showError('Falha no login: ' + (err.message || 'Erro desconhecido'));
+        showError('Login failed: ' + (err.message || 'Unknown error'));
       }
       
       return false;
@@ -771,7 +771,7 @@ export function WalletProvider({ children }) {
     
     if (!addressToUse) {
       console.log("\n\n WalletContext registerWithSignature address", address, walletAddress, "\n\n");
-      showError('Nenhuma carteira conectada');
+      showError('No wallet connected');
       return false;
     }
     
@@ -791,7 +791,7 @@ export function WalletProvider({ children }) {
       
       if (!addressToCheck) {
         console.log("\n\n WalletContext checkWalletExists - Nenhum endereço disponível", address, walletAddress, "\n\n");
-        return { success: false, exists: false, message: 'Nenhuma carteira conectada' };
+        return { success: false, exists: false, message: 'No wallet connected' };
       }
       
       const response = await api.get(`/wallet/check/${addressToCheck}`);
@@ -801,7 +801,7 @@ export function WalletProvider({ children }) {
       return { 
         success: false, 
         exists: false, 
-        message: error.response?.data?.message || 'Erro ao verificar carteira' 
+        message: error.response?.data?.message || 'Error checking wallet' 
       };
     }
   }, [address]);
@@ -864,14 +864,14 @@ export function WalletProvider({ children }) {
     try {
       // Verifica se já está conectando
       if (connecting) {
-        return { success: false, message: 'Já existe uma conexão em andamento. Por favor, aguarde.' };
+        return { success: false, message: 'Connection already in progress. Please wait.' };
       }
       
       // Primeiro apenas conecta a carteira
       const connected = await connectWallet();
       
       if (!connected || !address) {
-        return { success: false, message: 'Falha ao conectar carteira' };
+        return { success: false, message: 'Failed to connect wallet' };
       }
       
       // Se já está autenticado, retorna sucesso
@@ -887,7 +887,7 @@ export function WalletProvider({ children }) {
         return { 
           success: false, 
           needsNetworkChange: true,
-          message: networkResult.message || 'Falha ao conectar à rede Chiliz'
+          message: networkResult.message || 'Failed to connect to Chiliz network'
         };
       }
       
@@ -916,7 +916,7 @@ export function WalletProvider({ children }) {
       const walletCheck = await checkWalletExists(currentAddress);
       
       if (!walletCheck.success) {
-        return { success: false, message: walletCheck.message || 'Erro ao verificar registro' };
+        return { success: false, message: walletCheck.message || 'Error checking registration' };
       }
       
       // Retorna o resultado da verificação
@@ -932,13 +932,13 @@ export function WalletProvider({ children }) {
       if (error.code === -32002) {
         return { 
           success: false, 
-          message: 'Já existe uma solicitação de conexão em processamento. Por favor, aguarde.'
+          message: 'Connection request already in progress. Please wait.'
         };
       }
       
       return { 
         success: false, 
-        message: error.message || 'Erro ao conectar e verificar registro'
+        message: error.message || 'Error connecting and checking registration'
       };
     }
   }, [connectWallet, address, isAuthenticated, checkWalletExists, connecting, ensureAccountAvailable]);
