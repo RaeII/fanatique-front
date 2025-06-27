@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useWalletContext } from '../hooks/useWalletContext';
-import { showInfo, showError } from '../lib/toast';
+//import { showInfo, showError } from '../lib/toast';
 import { Button } from '../components/ui/button';
 import { useUserContext } from '../hooks/useUserContext';
-import { useCardSystem } from '../hooks/useCardSystem';
+//import { useCardSystem } from '../hooks/useCardSystem';
 import matchApi from '../api/match';
 import MatchCard from '../components/MatchCard';
 import { LoginHandler } from '../components/LoginHandler';
-import TreasureChestAnimation from '../components/TreasureChestAnimation';
 
 
 export default function DashboardPage() {
@@ -22,12 +21,12 @@ export default function DashboardPage() {
     connectWallet
   } = useWalletContext();
   const { userClubsData, } = useUserContext();
-  const { getUserCards } = useCardSystem();
+  //const { getUserCards } = useCardSystem();
   //const [followedClubs, setFollowedClubs] = useState([]);
   const [heartClubMatch, setHeartClubMatch] = useState(null);
-  const [showTreasureChest, setShowTreasureChest] = useState(false);
-  const [userCards, setUserCards] = useState([]);
-  //const [liveGameClubs, setLiveGameClubs] = useState([]);
+  //const [showTreasureChest, setShowTreasureChest] = useState(false);
+  //const [userCards, setUserCards] = useState([]);
+  // const [liveGameClubs, setLiveGameClubs] = useState([]);
 
 
 
@@ -75,7 +74,7 @@ export default function DashboardPage() {
     }
   };
 
-   const handleOpenTreasureChest = () => {
+/*   const handleOpenTreasureChest = () => {
     // Carrega as cartas do usuário do cache
     if (account) {
       const userData = getUserCards(account);
@@ -95,7 +94,7 @@ export default function DashboardPage() {
       showError('Conecte sua carteira primeiro!');
       return;
     }
-  }; 
+  }; */
 
 
   //CONTEÚDO PRINCIPAL DO DASHBOARD
@@ -178,7 +177,7 @@ export default function DashboardPage() {
           {/* Conteúdo principal */}
           <div className="container mx-auto px-4 py-8">
         {/* Botão do baú do tesouro */}
-         <div className="mb-6">
+{/*         <div className="mb-6">
           <Button 
             variant="secondary"
             onClick={handleOpenTreasureChest}
@@ -339,11 +338,11 @@ export default function DashboardPage() {
         </div>
         
         {/* Componente da animação do baú */}
-         <TreasureChestAnimation 
+        {/* <TreasureChestAnimation 
           show={showTreasureChest}
           onClose={() => setShowTreasureChest(false)}
           cards={userCards}
-        /> 
+        /> */}
         </>
       ) : (
         /* Conteúdo para usuários não logados */

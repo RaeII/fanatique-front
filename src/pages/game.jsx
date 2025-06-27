@@ -207,11 +207,6 @@ export default function GamePage() {
       });
       setShowBetCompletedIndicator(true);
       
-      // Auto-hide o indicador após 10 segundos
-      setTimeout(() => {
-        setShowBetCompletedIndicator(false);
-      }, 10000);
-      
       showSuccess(t('game:betting.success.betPlaced'));
     } catch (error) {
       console.error("Erro ao realizar aposta:", error);
@@ -514,62 +509,62 @@ export default function GamePage() {
               </p>
             </div>
           )}
+
+          {/* Indicador de Aposta Finalizada - Canto Inferior Direito */}
+          {showBetCompletedIndicator && lastBetData && (
+            <div className="absolute bottom-4 right-4 animate-in slide-in-from-right duration-500">
+              <div className="bg-gradient-to-r from-secondary to-primary rounded-xl shadow-2xl border border-white/20 backdrop-blur-md overflow-hidden max-w-xs">
+                <div className="p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-2">
+                        <Check className="w-3 h-3 text-black" />
+                      </div>
+                      <div>
+                        <h3 className="text-black font-bold text-xs">{t('game:betting.betCompleted.title')}</h3>
+                        <p className="text-black/70 text-xs">{t('game:betting.betCompleted.subtitle')}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setShowBetCompletedIndicator(false)}
+                      className="text-black/60 hover:text-black/80 transition-colors ml-2"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                  
+                  <div className="space-y-1 mb-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-black/70 text-xs">{t('game:betting.betCompleted.amount')}</span>
+                      <span className="text-black font-semibold text-xs">{lastBetData.amount} CHIPS</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-black/70 text-xs">{t('game:betting.betCompleted.totalOdds')}</span>
+                      <span className="text-black font-semibold text-xs">{lastBetData.odds.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-black/70 text-xs">{t('game:betting.betCompleted.possibleReturn')}</span>
+                      <span className="text-black font-bold text-xs">{lastBetData.payout.toFixed(2)} CHIPS</span>
+                    </div>
+                  </div>
+                  
+                  <button
+                    onClick={() => navigate('/my-bets')}
+                    className="w-full bg-black/20 hover:bg-black/30 text-black font-semibold text-xs py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center group"
+                  >
+                    <Eye className="w-3 h-3 mr-1" />
+                    {t('game:betting.betCompleted.viewMyBets')}
+                    <ChevronRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
             {/* Betting Markets */}
-      <div className="container mx-auto px-4 py-8 relative">
-        {/* Indicador de Aposta Finalizada */}
-        {showBetCompletedIndicator && lastBetData && (
-          <div className="sticky top-4 z-50 mb-6 flex justify-end animate-in slide-in-from-right duration-500">
-            <div className="bg-gradient-to-r from-secondary to-primary rounded-xl shadow-2xl border border-white/20 backdrop-blur-md overflow-hidden max-w-sm">
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center mr-3">
-                      <Check className="w-4 h-4 text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-black font-bold text-sm">{t('game:betting.betCompleted.title')}</h3>
-                      <p className="text-black/70 text-xs">{t('game:betting.betCompleted.subtitle')}</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setShowBetCompletedIndicator(false)}
-                    className="text-black/60 hover:text-black/80 transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-                
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-black/70 text-xs">{t('game:betting.betCompleted.amount')}</span>
-                    <span className="text-black font-semibold text-xs">{lastBetData.amount} CHIPS</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-black/70 text-xs">{t('game:betting.betCompleted.totalOdds')}</span>
-                    <span className="text-black font-semibold text-xs">{lastBetData.odds.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-black/70 text-xs">{t('game:betting.betCompleted.possibleReturn')}</span>
-                    <span className="text-black font-bold text-xs">{lastBetData.payout.toFixed(2)} CHIPS</span>
-                  </div>
-                </div>
-                
-                <button
-                  onClick={() => navigate('/my-bets')}
-                  className="w-full bg-black/20 hover:bg-black/30 text-black font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center group"
-                >
-                  <Eye className="w-4 h-4 mr-2" />
-                  {t('game:betting.betCompleted.viewMyBets')}
-                  <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
+      <div className="container mx-auto px-4 py-8">
         {bettingMarkets.length > 0 ? (
           <div className="space-y-8">
             {bettingMarkets.map((market) => (
