@@ -1,4 +1,4 @@
-import { cardPT, cardEN } from '../../public/pack/card.js';
+import { cardEN } from '../../public/pack/card.js';
 
 // Sistema de cartas para novos usuários
 class CardSystem {
@@ -9,41 +9,63 @@ class CardSystem {
     this.EXPIRY_DAYS = 30; // Cache expira em 30 dias
   }
 
-  // Obter cartas baseado no idioma
-  getCards(language = 'en') {
-    return language === 'en' ? cardEN : cardPT;
+  // Obter cartas baseado no idioma (sempre retorna inglês)
+  getCards() {
+    return cardEN; // Sempre retorna cartas em inglês
   }
 
   // Filtrar cartas por raridade
-  getCardsByRarity(rarity, language = 'en') {
-    const cards = this.getCards(language);
+  getCardsByRarity(rarity) {
+    const cards = this.getCards();
     return cards.filter(card => card.rarity === rarity);
   }
 
   // Selecionar carta aleatória de uma raridade específica
-  getRandomCardByRarity(rarity, language = 'en') {
-    const cards = this.getCardsByRarity(rarity, language);
+  getRandomCardByRarity(rarity) {
+    const cards = this.getCardsByRarity(rarity);
     if (cards.length === 0) return null;
     
     const randomIndex = Math.floor(Math.random() * cards.length);
     return cards[randomIndex];
   }
 
+  // Mapear raridades do inglês para português
+  mapRarityToPortuguese(rarity) {
+    const rarityMap = {
+      'common': 'common',
+      'rare': 'rara', 
+      'legendary': 'lendaria'
+    };
+    return rarityMap[rarity] || rarity;
+  }
+
   // Gerar pack de 3 cartas para novo usuário (1 lendária, 1 rara, 1 comum)
-  generateNewUserPack(language = 'en') {
+  generateNewUserPack() {
     const pack = [];
     
     // 1 carta lendária aleatória
-    const legendary = this.getRandomCardByRarity('lendaria', language);
-    if (legendary) pack.push(legendary);
+    const legendary = this.getRandomCardByRarity('legendary');
+    if (legendary) {
+      // Converte a raridade para português se necessário
+      legendary.rarity = this.mapRarityToPortuguese(legendary.rarity);
+      pack.push(legendary);
+    }
     
     // 1 carta rara aleatória
-    const rare = this.getRandomCardByRarity('rara', language);
-    if (rare) pack.push(rare);
+    const rare = this.getRandomCardByRarity('rare');
+    if (rare) {
+      // Converte a raridade para português se necessário
+      rare.rarity = this.mapRarityToPortuguese(rare.rarity);
+      pack.push(rare);
+    }
     
     // 1 carta comum
-    const common = this.getRandomCardByRarity('comum', language);
-    if (common) pack.push(common);
+    const common = this.getRandomCardByRarity('common');
+    if (common) {
+      // Converte a raridade para português se necessário
+      common.rarity = this.mapRarityToPortuguese(common.rarity);
+      pack.push(common);
+    }
     
     return pack;
   }
@@ -124,7 +146,7 @@ class CardSystem {
   }
 
   // Processar novo usuário - gerar e salvar cartas
-  processNewUser(walletAddress, language = 'en') {
+  processNewUser(walletAddress) {
     try {
       // Verifica se já recebeu cartas
       if (this.hasReceivedWelcomeCards(walletAddress)) {
@@ -133,7 +155,7 @@ class CardSystem {
       }
 
       // Gera pack de cartas para novo usuário
-      const newPack = this.generateNewUserPack(language);
+      const newPack = this.generateNewUserPack();
       
       if (newPack.length > 0) {
         // Salva as cartas no cache
@@ -150,7 +172,7 @@ class CardSystem {
   }
 
   // NOVA FUNÇÃO: Garante que o usuário sempre tenha cartas
-  ensureUserHasCards(walletAddress, language = 'en') {
+  ensureUserHasCards(walletAddress) {
     try {
       // Verifica se o usuário tem cartas no cache local
       const existingCards = this.getUserCards(walletAddress);
@@ -166,7 +188,7 @@ class CardSystem {
 
       // Se não tem cartas no cache (cache limpo, novo dispositivo, etc), gera novas cartas
       console.log(`Usuário ${walletAddress} sem cartas no cache. Gerando novas cartas...`);
-      const newPack = this.generateNewUserPack(language);
+      const newPack = this.generateNewUserPack();
       
       if (newPack.length > 0) {
         // Salva as cartas no cache

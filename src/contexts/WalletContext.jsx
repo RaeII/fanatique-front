@@ -394,7 +394,7 @@ export function WalletProvider({ children }) {
           // Se não tiver (cache limpo, novo dispositivo, etc), gera novas cartas
           try {
             console.log("Verificando cartas do usuário autenticado...");
-            const userCardsResult = cardSystem.ensureUserHasCards(savedWallet, 'pt');
+            const userCardsResult = cardSystem.ensureUserHasCards(savedWallet);
             if (userCardsResult && userCardsResult.cards && userCardsResult.cards.length > 0) {
               console.log('Cartas do usuário garantidas na autenticação:', userCardsResult.cards);
               
@@ -721,12 +721,13 @@ export function WalletProvider({ children }) {
           try {
             console.log("\n\n Verificando cartas do usuário...\n\n");
 
-            const userCardsResult = cardSystem.ensureUserHasCards(addressToUse, 'pt');
+            const userCardsResult = cardSystem.ensureUserHasCards(addressToUse);
             if (userCardsResult && userCardsResult.cards && userCardsResult.cards.length > 0) {
               console.log('Cartas do usuário garantidas:', userCardsResult.cards);
               
               // Se é um novo usuário OU se acabou de receber novas cartas, mostra o modal
               if (new_user === true || userCardsResult.isNewCards) {
+                console.log("\n\n MOSTRANDO BAÚ DO TESOURO PARA NOVO USUÁRIO! \n\n");
                 // Armazena as cartas e mostra o baú
                 setWelcomeCards(userCardsResult.cards);
                 setShowTreasureChest(true);
