@@ -24,6 +24,11 @@ export function Header({ className }) {
     return `${address.slice(0, 4)}...${address.slice(-4)}`;
   };
   
+  // Resetar isHovering quando o estado de autenticação mudar
+  useEffect(() => {
+    setIsHovering(false);
+  }, [isAuthenticated]);
+
   // Carregar saldo de $CHIPS do usuário
   useEffect(() => {
     const loadChipsBalance = async () => {
@@ -111,7 +116,7 @@ export function Header({ className }) {
             >
               <button
                 onClick={() => disconnectWallet()}
-                className="px-4 py-1 dark:bg-black/30 rounded-md border hover:bg-primary/10 dark:text-primary dark:hover:bg-primary/10 transition-all duration-200 flex items-center gap-2 min-w-[120px] justify-center"
+                className="px-4 py-1 dark:bg-black/30 rounded-md border hover:bg-primary/10 dark:text-primary dark:hover:bg-primary/10 transition-all duration-200 flex items-center gap-2 w-[140px] justify-center"
                 style={{
                   borderColor: 'transparent',
                   backgroundColor: ''
